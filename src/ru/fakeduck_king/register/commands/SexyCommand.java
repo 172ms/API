@@ -47,19 +47,25 @@ public abstract class SexyCommand implements CommandExecutor {
 	
 	public void register() {
 		ReflectCommand reflectCommand = new ReflectCommand(this.command);
+		
 		if (this.aliases != null) {
 			reflectCommand.setAliases(this.aliases);
 		}
+		
 		if (this.description != null) {
 			reflectCommand.setDescription(this.description);
 		}
+		
 		if (this.usage != null) {
 			reflectCommand.setUsage(this.usage);
 		}
+		
 		if (this.permissionMessage != null) {
 			reflectCommand.setPermissionMessage(this.permissionMessage);
 		}
+		
 		this.getCommandMap().register("", reflectCommand);
+		
 		reflectCommand.setExecutor(this);
 	}
 	
@@ -67,6 +73,7 @@ public abstract class SexyCommand implements CommandExecutor {
 		if (SexyCommand.commandMap == null) {
 			try {
 				Field field = Bukkit.getServer().getClass().getDeclaredField("commandMap");
+				
 				field.setAccessible(true);
 				SexyCommand.commandMap = (CommandMap)field.get(Bukkit.getServer());
 				return this.getCommandMap();
@@ -83,6 +90,7 @@ public abstract class SexyCommand implements CommandExecutor {
 	
 	private class ReflectCommand extends Command {
 		SexyCommand sexyCommand = null;
+		
 		private ReflectCommand(String command) {
 			super(command);
 		}
@@ -96,6 +104,7 @@ public abstract class SexyCommand implements CommandExecutor {
 			if (sexyCommand != null) {
 				return sexyCommand.onCommand(sender, this, command, args);
 			}
+			
 			return false;
 		}
 		
@@ -104,6 +113,7 @@ public abstract class SexyCommand implements CommandExecutor {
 			if (sexyCommand != null) {
 				return sexyCommand.onTabComplete(sender, this, aliases, args);
 			}
+			
 			return null;
 		}
 	}

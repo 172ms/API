@@ -8,6 +8,7 @@ public class SexyColorize {
 		if (player.hasPermission("chat.color")) {
 			return ChatColor.translateAlternateColorCodes('&', message);
 		}
+		
 		return message;
 	}
 }

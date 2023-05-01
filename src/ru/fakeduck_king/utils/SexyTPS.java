@@ -10,7 +10,8 @@ public class SexyTPS {
 			Class<?> nmsClass = Class.forName("net.minecraft.server." + version + ".MinecraftServer");
 			Object minecraftServer = nmsClass.getMethod("getServer").invoke(null);
 			Field recentTPSField = minecraftServer.getClass().getField("recentTps");
-			double[] recentTPS = (double[]) recentTPSField.get(minecraftServer);
+			double[] recentTPS = (double[])recentTPSField.get(minecraftServer);
+			
 			return SexyTPS.format(recentTPS[0]);
 		}
 		catch (Exception e) {
@@ -21,16 +22,19 @@ public class SexyTPS {
 	
 	private static String format(double tps) {
 		String color;
-		if (tps > 18.0D) {
-			color = "§a";
+		
+		if (tps > 18.D) {
+			color = "Â§a";
 		}
-		else if (tps > 16.0D) {
-			color = "§e";
+		else if (tps > 16.D) {
+			color = "Â§e";
 		}
 		else {
-			color = "§c";
+			color = "Â§c";
 		}
-		double formattedTPS = Math.min(Math.round(tps * 100.0D) / 100.0D, 20.0D);
+		
+		double formattedTPS = Math.min(Math.round(tps * 100.D) / 100.D, 20.0);
+		
 		return color + formattedTPS;
 	}
 }

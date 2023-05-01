@@ -16,12 +16,12 @@ public class PlayerSet {
 		this.set = new HashSet<>();
 	}
 	
-	public boolean has(Player player) {
-		return this.set.contains(player);
-	}
-	
 	public void add(Player player) {
 		this.set.add(player);
+	}
+	
+	public boolean has(Player player) {
+		return this.set.contains(player);
 	}
 	
 	public void remove(Player player) {

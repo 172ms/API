@@ -8,6 +8,7 @@ public class SexyPing {
 	public static int get(Player player) {
 		CraftPlayer craftPlayer = (CraftPlayer)player;
 		EntityPlayer entityPlayer = craftPlayer.getHandle();
+		
 		return entityPlayer.ping;
 	}
 }

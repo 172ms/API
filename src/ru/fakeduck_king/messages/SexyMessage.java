@@ -12,8 +12,10 @@ import java.util.List;
 public class SexyMessage {
 	public static void send(Plugin plugin, Player player, String[] messages) {
 		List<String> list = Arrays.asList(messages);
+		
 		new BukkitRunnable() {
 			int i = 0;
+			
 			@Override
 			public void run() {
 				if (i >= list.size()) {

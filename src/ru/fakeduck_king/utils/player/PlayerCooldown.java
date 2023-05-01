@@ -15,19 +15,20 @@ public class PlayerCooldown {
 	}
 		
 	public void setup() {
-        this.time = Maps.newHashMap();
-	}
-	
-	public boolean has(Player player) {
-	    return !this.time.containsKey(player.getUniqueId()) || this.time.get(player.getUniqueId()) <= System.currentTimeMillis();
+		this.time = Maps.newHashMap();
 	}
 	
 	public int get(Player player) {
 		return Math.toIntExact(Math.round((this.time.get(player.getUniqueId()) - System.currentTimeMillis()) / 1000F));
 	}
 	
+	public boolean has(Player player) {
+		return !this.time.containsKey(player.getUniqueId()) || this.time.get(player.getUniqueId()) <= System.currentTimeMillis();
+	}
+	
 	public void set(Player player, int seconds) {
 		double delay = System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(seconds);
+		
 		this.time.put(player.getUniqueId(), delay);
 	}
 }

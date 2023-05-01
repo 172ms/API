@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 public class SexyAutoRespawn {
 	public static void respawn(Player player) {
 		PacketPlayInClientCommand packetPlayInClientCommand = new PacketPlayInClientCommand(EnumClientCommand.PERFORM_RESPAWN);
+		
 		((CraftPlayer)player).getHandle().playerConnection.a(packetPlayInClientCommand);
 	}
 }
