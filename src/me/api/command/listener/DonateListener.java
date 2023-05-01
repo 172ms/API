@@ -138,8 +138,8 @@ public class DonateListener extends SexyEvent {
 				return;
 			}
 			
-			if (playerAPI.getRUB() >= 59) {
-				playerAPI.removeRUB(59);
+			if (playerAPI.getRUB() >= Prefix.COAL_COST) {
+				playerAPI.removeRUB(Prefix.COAL_COST);
 				DatabaseManager.getDatabaseManager().save(playerAPI);
 				PermissionsEx.getUser(player).setGroups(new String[] { "COAL" });
 				SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.COAL);
@@ -188,11 +188,11 @@ public class DonateListener extends SexyEvent {
 			}
 			
 			if (PermissionsEx.getUser(player.getName()).inGroup("COAL")) {
-				if (playerAPI.getRUB() >= 149 - 59) {
-					playerAPI.removeRUB(149 - 59);
+				if (playerAPI.getRUB() >= Prefix.IRON_COST - Prefix.COAL_COST) {
+					playerAPI.removeRUB(Prefix.IRON_COST - Prefix.COAL_COST);
 					DatabaseManager.getDatabaseManager().save(playerAPI);
 					PermissionsEx.getUser(player).setGroups(new String[] { "IRON" });
-					SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.IRON + "! &aДоплатив 90 RUB");
+					SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.IRON + "! &aДоплатив " + (Prefix.IRON_COST - Prefix.COAL_COST) + " RUB.");
 					player.closeInventory();
 					return;
 				}
@@ -253,11 +253,11 @@ public class DonateListener extends SexyEvent {
 			}
 			
 			if (PermissionsEx.getUser(player.getName()).inGroup("COAL")) {
-				if (playerAPI.getRUB() >= 299 - 59) {
-					playerAPI.removeRUB(299 - 59);
+				if (playerAPI.getRUB() >= Prefix.GOLD_COST - Prefix.COAL_COST) {
+					playerAPI.removeRUB(Prefix.GOLD_COST - Prefix.COAL_COST);
 					DatabaseManager.getDatabaseManager().save(playerAPI);
 					PermissionsEx.getUser(player).setGroups(new String[] { "GOLD" });
-					SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.GOLD + "! &aДоплатив 240 RUB");
+					SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.GOLD + "! &aДоплатив " + (Prefix.GOLD_COST - Prefix.COAL_COST) + " RUB.");
 					player.closeInventory();
 					return;
 				}
@@ -269,11 +269,11 @@ public class DonateListener extends SexyEvent {
 			}
 			
 			if (PermissionsEx.getUser(player.getName()).inGroup("IRON")) {
-				if (playerAPI.getRUB() >= 299 - 149) {
-					playerAPI.removeRUB(299 - 149);
+				if (playerAPI.getRUB() >= Prefix.GOLD_COST - Prefix.IRON_COST) {
+					playerAPI.removeRUB(Prefix.GOLD_COST - Prefix.IRON_COST);
 					DatabaseManager.getDatabaseManager().save(playerAPI);
 					PermissionsEx.getUser(player).setGroups(new String[] { "GOLD" });
-					SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.GOLD + "! &aДоплатив 150 RUB");
+					SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.GOLD + "! &aДоплатив " + (Prefix.GOLD_COST - Prefix.IRON_COST) + " RUB.");
 					player.closeInventory();
 					return;
 				}
@@ -330,6 +330,54 @@ public class DonateListener extends SexyEvent {
 				return;
 			}
 			
+			if (PermissionsEx.getUser(player.getName()).inGroup("COAL")) {
+				if (playerAPI.getRUB() >= Prefix.EMERALD_COST - Prefix.COAL_COST) {
+					playerAPI.removeRUB(Prefix.EMERALD_COST - Prefix.COAL_COST);
+					DatabaseManager.getDatabaseManager().save(playerAPI);
+					PermissionsEx.getUser(player).setGroups(new String[] { "EMERALD" });
+					SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.EMERALD + "! &aДоплатив " + (Prefix.EMERALD_COST - Prefix.IRON_COST) + " RUB.");
+					player.closeInventory();
+					return;
+				}
+				else {
+					SexyMessage.send(player, "&cНедостаточно средств!");
+					player.closeInventory();
+					return;
+				}
+			}
+			
+			if (PermissionsEx.getUser(player.getName()).inGroup("IRON")) {
+				if (playerAPI.getRUB() >= Prefix.EMERALD_COST - Prefix.IRON_COST) {
+					playerAPI.removeRUB(Prefix.EMERALD_COST - Prefix.IRON_COST);
+					DatabaseManager.getDatabaseManager().save(playerAPI);
+					PermissionsEx.getUser(player).setGroups(new String[] { "EMERALD" });
+					SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.EMERALD + "! &aДоплатив " + (Prefix.EMERALD_COST - Prefix.IRON_COST) + " RUB.");
+					player.closeInventory();
+					return;
+				}
+				else {
+					SexyMessage.send(player, "&cНедостаточно средств!");
+					player.closeInventory();
+					return;
+				}
+			}
+			
+			if (PermissionsEx.getUser(player.getName()).inGroup("GOLD")) {
+				if (playerAPI.getRUB() >= Prefix.EMERALD_COST - Prefix.GOLD_COST) {
+					playerAPI.removeRUB(Prefix.EMERALD_COST - Prefix.GOLD_COST);
+					DatabaseManager.getDatabaseManager().save(playerAPI);
+					PermissionsEx.getUser(player).setGroups(new String[] { "EMERALD" });
+					SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.EMERALD + "! &aДоплатив " + (Prefix.EMERALD_COST - Prefix.GOLD_COST) + " RUB.");
+					player.closeInventory();
+					return;
+				}
+				else {
+					SexyMessage.send(player, "&cНедостаточно средств!");
+					player.closeInventory();
+					return;
+				}
+			}
+			
 			if (playerAPI.getRUB() >= 599) {
 				playerAPI.removeRUB(599);
 				DatabaseManager.getDatabaseManager().save(playerAPI);
@@ -354,22 +402,28 @@ public class DonateListener extends SexyEvent {
 		Player player = (Player)event.getWhoClicked();
 		OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(player.getName());
 		PlayerAPI playerAPI = PlayerAPI.getPlayerAPI(offlinePlayer);
+		
 		if (!(Prefix.CONFIRM_DONATE + " " + Prefix.DIAMOND).equals((player).getOpenInventory().getTitle())) {
 			return;
 		}
+		
 		event.setCancelled(true);
+		
 		if (itemStack == null || itemStack.getType() == null || itemStack.getType() == Material.AIR) {
 			return;
 		}
+		
 		List validGroupsList = new ArrayList<>(Arrays.asList(this.validGroups));
 		validGroupsList.removeAll(Arrays.asList("COAL", "IRON", "GOLD", "EMERALD"));
 		Object[] validGroupsGold = validGroupsList.toArray(new String[validGroupsList.size()]);
+		
 		if (itemStack.getType() == Material.LIME_WOOL) {
 			if (Arrays.asList(validGroupsGold).indexOf(PermissionsEx.getUser(player).getGroups()[0].getName().toUpperCase()) >= 0) {
 				SexyMessage.send(player, "&cВы не можете купить ниже привилегию, или такую же");
 				player.closeInventory();
 				return;
 			}
+			
 			if (playerAPI.getRUB() >= 1199) {
 				playerAPI.removeRUB(1199);
 				DatabaseManager.getDatabaseManager().save(playerAPI);
@@ -382,6 +436,7 @@ public class DonateListener extends SexyEvent {
 				player.closeInventory();
 			}
 		}
+		
 		if (itemStack.getType() == Material.RED_WOOL) {
 			player.closeInventory();
 		}
@@ -393,22 +448,28 @@ public class DonateListener extends SexyEvent {
 		Player player = (Player)event.getWhoClicked();
 		OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(player.getName());
 		PlayerAPI playerAPI = PlayerAPI.getPlayerAPI(offlinePlayer);
+		
 		if (!(Prefix.CONFIRM_DONATE + " " + Prefix.FLUX).equals((player).getOpenInventory().getTitle())) {
 			return;
 		}
+		
 		event.setCancelled(true);
+		
 		if (itemStack == null || itemStack.getType() == null || itemStack.getType() == Material.AIR) {
 			return;
 		}
+		
 		List validGroupsList = new ArrayList<>(Arrays.asList(this.validGroups));
 		validGroupsList.removeAll(Arrays.asList("COAL", "IRON", "GOLD", "EMERALD", "DIAMOND"));
 		Object[] validGroupsGold = validGroupsList.toArray(new String[validGroupsList.size()]);
+		
 		if (itemStack.getType() == Material.LIME_WOOL) {
 			if (Arrays.asList(validGroupsGold).indexOf(PermissionsEx.getUser(player).getGroups()[0].getName().toUpperCase()) >= 0) {
 				SexyMessage.send(player, "&cВы не можете купить ниже привилегию, или такую же");
 				player.closeInventory();
 				return;
 			}
+			
 			if (playerAPI.getRUB() >= 2399) {
 				playerAPI.removeRUB(2399);
 				DatabaseManager.getDatabaseManager().save(playerAPI);
@@ -421,6 +482,7 @@ public class DonateListener extends SexyEvent {
 				player.closeInventory();
 			}
 		}
+		
 		if (itemStack.getType() == Material.RED_WOOL) {
 			player.closeInventory();
 		}
@@ -430,13 +492,17 @@ public class DonateListener extends SexyEvent {
 	public void onInventoryClickSelectMiniGamesCoal(InventoryClickEvent event) {
 		ItemStack itemStack = event.getCurrentItem();
 		Player player = (Player)event.getWhoClicked();
+		
 		if (!Prefix.SELECT_MINI_GAMES_COAL.equals((player).getOpenInventory().getTitle())) {
 			return;
 		}
+		
 		event.setCancelled(true);
+		
 		if (itemStack == null || itemStack.getType() == null || itemStack.getType() == Material.AIR) {
 			return;
 		}
+		
 		if (itemStack.getType() == Material.PAPER) {
 			GUI.openDonate(player);
 		}
@@ -446,13 +512,17 @@ public class DonateListener extends SexyEvent {
 	public void onInventoryClickSelectMiniGamesIron(InventoryClickEvent event) {
 		ItemStack itemStack = event.getCurrentItem();
 		Player player = (Player)event.getWhoClicked();
+		
 		if (!Prefix.SELECT_MINI_GAMES_IRON.equals((player).getOpenInventory().getTitle())) {
 			return;
 		}
+		
 		event.setCancelled(true);
+		
 		if (itemStack == null || itemStack.getType() == null || itemStack.getType() == Material.AIR) {
 			return;
 		}
+		
 		if (itemStack.getType() == Material.PAPER) {
 			GUI.openDonate(player);
 		}
@@ -462,13 +532,17 @@ public class DonateListener extends SexyEvent {
 	public void onInventoryClickSelectMiniGamesGold(InventoryClickEvent event) {
 		ItemStack itemStack = event.getCurrentItem();
 		Player player = (Player)event.getWhoClicked();
+		
 		if (!Prefix.SELECT_MINI_GAMES_GOLD.equals((player).getOpenInventory().getTitle())) {
 			return;
 		}
+		
 		event.setCancelled(true);
+		
 		if (itemStack == null || itemStack.getType() == null || itemStack.getType() == Material.AIR) {
 			return;
 		}
+		
 		if (itemStack.getType() == Material.PAPER) {
 			GUI.openDonate(player);
 		}
@@ -478,13 +552,17 @@ public class DonateListener extends SexyEvent {
 	public void onInventoryClickSelectMiniGamesEmerald(InventoryClickEvent event) {
 		ItemStack itemStack = event.getCurrentItem();
 		Player player = (Player)event.getWhoClicked();
+		
 		if (!Prefix.SELECT_MINI_GAMES_EMERALD.equals((player).getOpenInventory().getTitle())) {
 			return;
 		}
+		
 		event.setCancelled(true);
+		
 		if (itemStack == null || itemStack.getType() == null || itemStack.getType() == Material.AIR) {
 			return;
 		}
+		
 		if (itemStack.getType() == Material.PAPER) {
 			GUI.openDonate(player);
 		}
@@ -494,13 +572,17 @@ public class DonateListener extends SexyEvent {
 	public void onInventoryClickSelectMiniGameDiamond(InventoryClickEvent event) {
 		ItemStack itemStack = event.getCurrentItem();
 		Player player = (Player)event.getWhoClicked();
+		
 		if (!Prefix.SELECT_MINI_GAMES_DIAMOND.equals((player).getOpenInventory().getTitle())) {
 			return;
 		}
+		
 		event.setCancelled(true);
+		
 		if (itemStack == null || itemStack.getType() == null || itemStack.getType() == Material.AIR) {
 			return;
 		}
+		
 		if (itemStack.getType() == Material.PAPER) {
 			GUI.openDonate(player);
 		}
@@ -510,13 +592,17 @@ public class DonateListener extends SexyEvent {
 	public void onInventoryClickSelectMiniGameFlux(InventoryClickEvent event) {
 		ItemStack itemStack = event.getCurrentItem();
 		Player player = (Player)event.getWhoClicked();
+		
 		if (!Prefix.SELECT_MINI_GAMES_FLUX.equals((player).getOpenInventory().getTitle())) {
 			return;
 		}
+		
 		event.setCancelled(true);
+		
 		if (itemStack == null || itemStack.getType() == null || itemStack.getType() == Material.AIR) {
 			return;
 		}
+		
 		if (itemStack.getType() == Material.PAPER) {
 			GUI.openDonate(player);
 		}

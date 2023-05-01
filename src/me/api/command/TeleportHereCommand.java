@@ -57,6 +57,7 @@ public class TeleportHereCommand extends SexyCommand {
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
 		List<String> list = Lists.newArrayList();
+		
 		if (args.length == 1) {
 			if (sender.hasPermission("fluxmber.admin")) {
 				list.addAll(Bukkit.getOnlinePlayers().stream()
@@ -65,6 +66,7 @@ public class TeleportHereCommand extends SexyCommand {
 				.collect(Collectors.toList()));
 			}
 		}
+		
 		Collections.sort(list);
 		return list;
 	}

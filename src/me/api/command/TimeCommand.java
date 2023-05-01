@@ -23,6 +23,7 @@ public class TimeCommand extends SexyCommand {
 			switch (args.length) {
 				case 1: {
 					String string = args[0];
+					
 					switch (string) {
 						case "day":
 						case "d": {
@@ -31,9 +32,11 @@ public class TimeCommand extends SexyCommand {
 									player.getWorld().setTime(0L);
 								});
 							}
+							
 							SexyMessage.send(sender, "Вы установили режим §aдень");
 							return true;
 						}
+						
 						case "night":
 						case "n": {
 							if (!Bukkit.getOnlinePlayers().isEmpty()) {
@@ -41,6 +44,7 @@ public class TimeCommand extends SexyCommand {
 									player.getWorld().setTime(14000L);
 								});
 							}
+							
 							SexyMessage.send(sender, "Вы установили режим §aночьц");
 							return true;
 						}
@@ -48,20 +52,25 @@ public class TimeCommand extends SexyCommand {
 					SexyMessage.send(sender, "&cАргумент был не найден! Используйте аргументы: &8[&cday/night&8]");
 					return true;
 				}
+				
 				default: {
 					SexyMessage.send(sender, this.usage);
 					return true;
 				}
 			}
 		}
+		
 		Player player = (Player)sender;
+		
 		if (!player.hasPermission("fluxmber.admin")) {
 			SexyMessage.send(player, this.permissionMessage);
 			return true;
 		}
+		
 		switch (args.length) {
 			case 1: {
 				String string = args[0];
+				
 				switch (string) {
 					case "day":
 					case "d": {
@@ -69,6 +78,7 @@ public class TimeCommand extends SexyCommand {
 						SexyMessage.send(player, "Вы установили режим §aдень");
 						return true;
 					}
+					
 					case "night":
 					case "n": {
 						player.getWorld().setTime(14000L);
@@ -79,6 +89,7 @@ public class TimeCommand extends SexyCommand {
 				SexyMessage.send(player, "&cАргумент был не найден! Используйте аргументы: &8[&cday/night&8]");
 				return true;
 			}
+			
 			default: {
 				SexyMessage.send(player, this.usage);
 				return true;
@@ -89,6 +100,7 @@ public class TimeCommand extends SexyCommand {
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
 		List<String> list = Lists.newArrayList();
+		
 		if (args.length == 1) {
 			if (sender.hasPermission("fluxmber.admin")) {
 				List<String> available = Arrays.asList("day", "night");
@@ -99,6 +111,7 @@ public class TimeCommand extends SexyCommand {
 				}
 			}
 		}
+		
 		Collections.sort(list);
 		return list;
 	}

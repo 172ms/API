@@ -1,6 +1,6 @@
 package ru.fakeduck_king.utils.player;
 
-import java.util.concurrent.ConcurrentHashMap;
+import com.google.common.collect.Maps;
 import java.util.concurrent.TimeUnit;
 import org.bukkit.entity.Player;
 import java.util.UUID;
@@ -13,9 +13,9 @@ public class PlayerCooldown {
 	public static PlayerCooldown getPlayerCooldown() {
 		return PlayerCooldown.playerCooldown;
 	}
-	
+		
 	public void setup() {
-        this.time = new ConcurrentHashMap<>();
+        this.time = Maps.newHashMap();
 	}
 	
 	public boolean has(Player player) {

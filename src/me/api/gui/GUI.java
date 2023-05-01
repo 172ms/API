@@ -2,6 +2,8 @@ package me.api.gui;
 
 import ru.fakeduck_king.messages.*;
 import ru.fakeduck_king.utils.*;
+import ru.tehkode.permissions.bukkit.PermissionsEx;
+
 import org.bukkit.inventory.*;
 import org.bukkit.entity.*;
 import me.api.data.*;
@@ -14,120 +16,240 @@ public class GUI {
 		Inventory inventory = Bukkit.createInventory(player, 45, Prefix.DONATE);
 		OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(player.getName());
 		PlayerAPI playerAPI = PlayerAPI.getPlayerAPI(offlinePlayer);
+		
 		for (int i = 0; i < inventory.getSize(); ++i) {
 			inventory.setItem(i, CustomItem.create(Material.BLACK_STAINED_GLASS_PANE, " "));
 		}
-		inventory.setItem(4, CustomItem.create(Material.PAPER, "&f¬аш баланс: &a" + playerAPI.getRUB() + " RUB"));
+		
+		inventory.setItem(4, CustomItem.create(Material.PAPER, "&fВаш баланс: &a" + playerAPI.getRUB() + " RUB"));
+		
 		inventory.setItem(11, CustomItem.create(Material.COAL, Prefix.COAL, new String[] {
 				" §fИнформация о донате:",
-				"   §fСтоимость §a> §a59 RUB",
+				"   §fСтоимость §a> §a" + Prefix.COAL_COST + " RUB",
 				"   §fДля более подробной информации нажмите колёсиком мыши",
 				"",
 				" §aНажмите, чтобы купить"
 		}));
+		
 		inventory.setItem(15, CustomItem.create(Material.IRON_INGOT, Prefix.IRON, new String[] {
 				" §fИнформация о донате:",
-				"   §fСтоимость §a> §a149 RUB",
+				"   §fСтоимость §a> §a> " + Prefix.IRON_COST + " RUB",
 				"   §fДля более подробной информации нажмите колёсиком мыши",
 				"",
 				" §aНажмите, чтобы купить"
 		}));
+		
 		inventory.setItem(21, CustomItem.create(Material.GOLD_INGOT, Prefix.GOLD, new String[] {
 				" §fИнформация о донате:",
-				"   §fСтоимость §a> §a299 RUB",
+				"   §fСтоимость §a> §a" + Prefix.GOLD_COST + " RUB",
 				"   §fДля более подробной информации нажмите колёсиком мыши",
 				"",
 				" §aНажмите, чтобы купить"
 		}));
+		
 		inventory.setItem(22, CustomItem.create(Material.EMERALD, Prefix.EMERALD, new String[] {
 				" §fИнформация о донате:",
-				"   §fСтоимость §a> §a599 RUB",
+				"   §fСтоимость §a> §a" + Prefix.EMERALD_COST + " RUB",
 				"   §fДля более подробной информации нажмите колёсиком мыши",
 				"",
 				" §aНажмите, чтобы купить"
 		}));
+		
 		inventory.setItem(23, CustomItem.create(Material.DIAMOND, Prefix.DIAMOND, new String[] {
 				" §fИнформация о донате:",
-				"   §fСтоимость §a> §a1199 RUB",
+				"   §fСтоимость §a> §a" + Prefix.DIAMOND_COST + " RUB",
 				"   §fДля более подробной информации нажмите колёсиком мыши",
 				"",
 				" §aНажмите, чтобы купить"
 		}));
+		
 		inventory.setItem(31, CustomItem.create(Material.TOTEM_OF_UNDYING, Prefix.FLUX, new String[] {
 				" §fИнформация о донате:",
-				"   §fСтоимость §a> §a2399 RUB",
+				"   §fСтоимость §a> §a" + Prefix.FLUX_COST + " RUB",
 				"   §fДля более подробной информации нажмите колёсиком мыши",
 				"",
 				" §aНажмите, чтобы купить"
 		}));
+		
 		inventory.setItem(36, CustomItem.create(Material.BARRIER, "&cЗакрыть"));
+		
 		inventory.setItem(44, CustomItem.create(Material.BARRIER, "&cЗакрыть"));
+		
 		player.openInventory(inventory);
 	}
 	
 	//CONFIRM DONATE COAL
 	public static void openConfirmDonateCoal(Player player) {
 		Inventory inventory = Bukkit.createInventory(player, 27, Prefix.CONFIRM_DONATE + " " + Prefix.COAL);
+		
 		for (int i = 0; i < inventory.getSize(); ++i) {
 			inventory.setItem(i, CustomItem.create(Material.BLACK_STAINED_GLASS_PANE, " "));
 		}
+		
 		inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить"));
+		
 		inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		
 		player.openInventory(inventory);
 	}
 	
 	//CONFIRM DONATE IRON
 	public static void openConfirmDonateIron(Player player) {
 		Inventory inventory = Bukkit.createInventory(player, 27, Prefix.CONFIRM_DONATE + " " + Prefix.IRON);
+		
 		for (int i = 0; i < inventory.getSize(); ++i) {
 			inventory.setItem(i, CustomItem.create(Material.BLACK_STAINED_GLASS_PANE, " "));
 		}
-		inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить"));
-		inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		
+		if (PermissionsEx.getUser(player.getName()).inGroup("COAL")) {
+			inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить, доплатив " + (Prefix.IRON_COST - Prefix.COAL_COST) + " RUB"));
+			
+			inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		}
+		else {
+			inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить"));
+			
+			inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		}
+		
 		player.openInventory(inventory);
 	}
 	
 	//CONFIRM DONATE GOLD
 	public static void openConfirmDonateGold(Player player) {
 		Inventory inventory = Bukkit.createInventory(player, 27, Prefix.CONFIRM_DONATE + " " + Prefix.GOLD);
+		
 		for (int i = 0; i < inventory.getSize(); ++i) {
 			inventory.setItem(i, CustomItem.create(Material.BLACK_STAINED_GLASS_PANE, " "));
 		}
-		inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить"));
-		inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		
+		if (PermissionsEx.getUser(player.getName()).inGroup("COAL")) {
+			inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить, доплатив " + (Prefix.GOLD_COST - Prefix.COAL_COST) + " RUB"));
+			
+			inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		}
+		else if (PermissionsEx.getUser(player.getName()).inGroup("IRON")) {
+			inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить, доплатив " + (Prefix.GOLD_COST - Prefix.IRON_COST) + " RUB"));
+			
+			inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		}
+		else {
+			inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить"));
+			
+			inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		}
+		
 		player.openInventory(inventory);
 	}
 	
 	//CONFIRM DONATE EMERALD
 	public static void openConfirmDonateEmerald(Player player) {
 		Inventory inventory = Bukkit.createInventory(player, 27, Prefix.CONFIRM_DONATE + " " + Prefix.EMERALD);
+		
 		for (int i = 0; i < inventory.getSize(); ++i) {
 			inventory.setItem(i, CustomItem.create(Material.BLACK_STAINED_GLASS_PANE, " "));
 		}
-		inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить"));
-		inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		
+		if (PermissionsEx.getUser(player.getName()).inGroup("COAL")) {
+			inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить, доплатив " + (Prefix.EMERALD_COST - Prefix.COAL_COST) + " RUB"));
+			
+			inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		}
+		else if (PermissionsEx.getUser(player.getName()).inGroup("IRON")) {
+			inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить, доплатив " + (Prefix.EMERALD_COST - Prefix.IRON_COST) + " RUB"));
+			
+			inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		}
+		else if (PermissionsEx.getUser(player.getName()).inGroup("GOLD")) {
+			inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить, доплатив " + (Prefix.EMERALD_COST - Prefix.GOLD_COST) + " RUB"));
+			
+			inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		}
+		else {
+			inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить"));
+			
+			inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		}
+		
 		player.openInventory(inventory);
 	}
 	
 	//CONFIRM DONATE DIAMOND
 	public static void openConfirmDonateDiamond(Player player) {
 		Inventory inventory = Bukkit.createInventory(player, 27, Prefix.CONFIRM_DONATE + " " + Prefix.DIAMOND);
+		
 		for (int i = 0; i < inventory.getSize(); ++i) {
 			inventory.setItem(i, CustomItem.create(Material.BLACK_STAINED_GLASS_PANE, " "));
 		}
-		inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить"));
-		inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		
+		if (PermissionsEx.getUser(player.getName()).inGroup("COAL")) {
+			inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить, доплатив " + (Prefix.DIAMOND_COST - Prefix.COAL_COST) + " RUB"));
+			
+			inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		}
+		else if (PermissionsEx.getUser(player.getName()).inGroup("IRON")) {
+			inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить, доплатив " + (Prefix.DIAMOND_COST - Prefix.IRON_COST) + " RUB"));
+			
+			inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		}
+		else if (PermissionsEx.getUser(player.getName()).inGroup("GOLD")) {
+			inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить, доплатив " + (Prefix.DIAMOND_COST - Prefix.GOLD_COST) + " RUB"));
+			
+			inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		}
+		else if (PermissionsEx.getUser(player.getName()).inGroup("EMERALD")) {
+			inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить, доплатив " + (Prefix.DIAMOND_COST - Prefix.EMERALD_COST) + " RUB"));
+			
+			inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		}
+		else {
+			inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить"));
+			
+			inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		}
+		
 		player.openInventory(inventory);
 	}
 	
 	//CONFIRM DONATE FLUX
 	public static void openConfirmDonateFlux(Player player) {
 		Inventory inventory = Bukkit.createInventory(player, 27, Prefix.CONFIRM_DONATE + " " + Prefix.FLUX);
+		
 		for (int i = 0; i < inventory.getSize(); ++i) {
 			inventory.setItem(i, CustomItem.create(Material.BLACK_STAINED_GLASS_PANE, " "));
 		}
-		inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить"));
-		inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		
+		if (PermissionsEx.getUser(player.getName()).inGroup("COAL")) {
+			inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить, доплатив " + (Prefix.FLUX_COST - Prefix.COAL_COST) + " RUB"));
+			
+			inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		}
+		else if (PermissionsEx.getUser(player.getName()).inGroup("IRON")) {
+			inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить, доплатив " + (Prefix.FLUX_COST - Prefix.IRON_COST) + " RUB"));
+			
+			inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		}
+		else if (PermissionsEx.getUser(player.getName()).inGroup("GOLD")) {
+			inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить, доплатив " + (Prefix.FLUX_COST - Prefix.GOLD_COST) + " RUB"));
+			
+			inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		}
+		else if (PermissionsEx.getUser(player.getName()).inGroup("EMERALD")) {
+			inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить, доплатив " + (Prefix.FLUX_COST - Prefix.EMERALD_COST) + " RUB"));
+			
+			inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		}
+		else if (PermissionsEx.getUser(player.getName()).inGroup("DIAMOND")) {
+			inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить, доплатив " + (Prefix.FLUX_COST - Prefix.DIAMOND_COST) + " RUB"));
+			
+			inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		}
+		else {
+			inventory.setItem(11, CustomItem.create(Material.LIME_WOOL, "&aПодтвердить"));
+			
+			inventory.setItem(15, CustomItem.create(Material.RED_WOOL, "&cОтменить"));
+		}
+		
 		player.openInventory(inventory);
 	}
 	

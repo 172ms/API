@@ -14,6 +14,14 @@ public class Prefix {
 	public static final String DIAMOND = "§b§lDIAMOND";
 	public static final String FLUX = "§e§lFLUX";
 	
+	//DONATE COST
+	public static final int COAL_COST = 59;
+	public static final int IRON_COST = 149;
+	public static final int GOLD_COST = 299;
+	public static final int EMERALD_COST = 599;
+	public static final int DIAMOND_COST = 1199;
+	public static final int FLUX_COST = 2399;
+	
 	//GUI DONATE
 	public static final String DONATE = "§8● Список привилегий";
 	public static final String SELECT_MINI_GAMES_COAL = "§8● Выбор мини-игры " + Prefix.COAL;
