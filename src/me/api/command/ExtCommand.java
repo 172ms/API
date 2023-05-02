@@ -1,11 +1,7 @@
 package me.api.command;
 
 import ru.fakeduck_king.register.commands.*;
-import ru.fakeduck_king.timer.SexyTimer;
-
 import com.google.common.collect.*;
-
-import api.API;
 import ru.fakeduck_king.messages.*;
 import org.bukkit.command.*;
 import org.bukkit.entity.*;
@@ -54,13 +50,6 @@ public class ExtCommand extends SexyCommand {
 					SexyMessage.send(player, this.permissionMessage);
 					return true;
 				}
-				
-				new SexyTimer(player, 3) {
-					@Override
-					protected void handle() {
-						SexyMessage.send(player, "TEST");
-					}
-				}.run(API.getInstance());
 				
 				player.setFireTicks(0);
 				SexyMessage.send(player, "Вы потушили себя!");

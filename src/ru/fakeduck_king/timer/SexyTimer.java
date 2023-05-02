@@ -22,13 +22,13 @@ public abstract class SexyTimer {
 	
 	public void run(Plugin plugin) {
 		Location location = player.getLocation();
-		SexyTitle.send(player, "&aТелепортируем...", "стойте на месте");
+		SexyTitle.send(player, "&aТЕЛЕПОРТИРУЕМ...", "стойте на месте");
 		
 		new BukkitRunnable() {
 			@Override
 			public void run() {
 				if (second != 0) {
-					SexyActionBar.send(player, "осталось: &a" + second);
+					SexyActionBar.send(player, "&aосталось: " + second);
 				}
 				
 				Location playerLocation = player.getLocation();

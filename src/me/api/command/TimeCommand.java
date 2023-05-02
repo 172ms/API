@@ -5,7 +5,6 @@ import com.google.common.collect.*;
 import ru.fakeduck_king.messages.*;
 import org.bukkit.command.*;
 import org.bukkit.entity.*;
-import org.bukkit.*;
 import java.util.*;
 
 public class TimeCommand extends SexyCommand {
@@ -19,6 +18,8 @@ public class TimeCommand extends SexyCommand {
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		Player player = (Player)sender;
+		
 		if (!(sender instanceof Player)) {
 			switch (args.length) {
 				case 1: {
@@ -27,24 +28,14 @@ public class TimeCommand extends SexyCommand {
 					switch (string) {
 						case "day":
 						case "d": {
-							if (!Bukkit.getOnlinePlayers().isEmpty()) {
-								Bukkit.getOnlinePlayers().forEach(player -> {
-									player.getWorld().setTime(0L);
-								});
-							}
-							
+							player.getWorld().setTime(0L);
 							SexyMessage.send(sender, "Вы установили режим §aдень");
 							return true;
 						}
 						
 						case "night":
 						case "n": {
-							if (!Bukkit.getOnlinePlayers().isEmpty()) {
-								Bukkit.getOnlinePlayers().forEach(player -> {
-									player.getWorld().setTime(14000L);
-								});
-							}
-							
+							player.getWorld().setTime(14000L);
 							SexyMessage.send(sender, "Вы установили режим §aночьц");
 							return true;
 						}
@@ -59,8 +50,6 @@ public class TimeCommand extends SexyCommand {
 				}
 			}
 		}
-		
-		Player player = (Player)sender;
 		
 		if (!player.hasPermission("fluxmber.admin")) {
 			SexyMessage.send(player, this.permissionMessage);

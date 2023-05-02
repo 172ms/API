@@ -3,6 +3,7 @@ package api;
 import ru.fakeduck_king.utils.player.*;
 import me.api.command.listener.*;
 import org.bukkit.plugin.java.*;
+import me.api.configuration.*;
 import me.api.listener.*;
 import me.api.runnable.*;
 import me.api.command.*;
@@ -41,6 +42,9 @@ public class API extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
+		//CONFIGMANAGER
+		ConfigManager.getConfigManager().setup();
+		
 		//DATABASEMANAGER
 		DatabaseManager.getDatabaseManager().setup();
 		
