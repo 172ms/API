@@ -16,20 +16,20 @@ import java.util.*;
 //ТУТ ПОЛНЫЙ ПИЗДЕЦ
 @SuppressWarnings("all")
 public class DonateListener extends SexyEvent {
-	private final String[] validGroups = {
-		"COAL",
-		"IRON",
-		"GOLD",
-		"EMERALD",
-		"DIAMOND",
-		"FLUX",
-		"HELPER",
-		"MODERATOR",
-		"CURATORMODERATOR",
-		"BUILDER",
-		"CURATORBUILDER",
+	private final String[] VALID_GROUPS = {
+		"DEVELOPER",
 		"ADMIN",
-		"DEVELOPER"
+		"CURATORBUILDER",
+		"BUILDER",
+		"CURATORMODERATOR",
+		"MODERATOR",
+		"HELPER",
+		"FLUX",
+		"DIAMOND",
+		"EMERALD",
+		"GOLD",
+		"IRON",
+		"COAL",
 	};
 	
 	public DonateListener(Plugin plugin) {
@@ -132,7 +132,7 @@ public class DonateListener extends SexyEvent {
 		}
 		
 		if (itemStack.getType() == Material.LIME_WOOL) {
-			if (Arrays.asList(this.validGroups).indexOf(PermissionsEx.getUser(player).getGroups()[0].getName().toUpperCase()) >= 0) {
+			if (Arrays.asList(this.VALID_GROUPS).indexOf(PermissionsEx.getUser(player).getGroups()[0].getName().toUpperCase()) >= 0) {
 				SexyMessage.send(player, "&cВы не можете купить ниже привилегию, или такую же");
 				player.closeInventory();
 				return;
@@ -176,7 +176,7 @@ public class DonateListener extends SexyEvent {
 			return;
 		}
 		
-		List validGroupsList = new ArrayList<>(Arrays.asList(this.validGroups));
+		List validGroupsList = new ArrayList<>(Arrays.asList(this.VALID_GROUPS));
 		validGroupsList.removeAll(Arrays.asList("COAL"));
 		Object[] validGroupsIron = validGroupsList.toArray(new String[validGroupsList.size()]);
 		
@@ -241,7 +241,7 @@ public class DonateListener extends SexyEvent {
 			return;
 		}
 		
-		List validGroupsList = new ArrayList<>(Arrays.asList(this.validGroups));
+		List validGroupsList = new ArrayList<>(Arrays.asList(this.VALID_GROUPS));
 		validGroupsList.removeAll(Arrays.asList("COAL", "IRON"));
 		Object[] validGroupsGold = validGroupsList.toArray(new String[validGroupsList.size()]);
 		
@@ -319,7 +319,7 @@ public class DonateListener extends SexyEvent {
 			return;
 		}
 		
-		List validGroupsList = new ArrayList<>(Arrays.asList(this.validGroups));
+		List validGroupsList = new ArrayList<>(Arrays.asList(this.VALID_GROUPS));
 		validGroupsList.removeAll(Arrays.asList("COAL", "IRON", "GOLD"));
 		Object[] validGroupsGold = validGroupsList.toArray(new String[validGroupsList.size()]);
 		
@@ -413,7 +413,7 @@ public class DonateListener extends SexyEvent {
 			return;
 		}
 		
-		List validGroupsList = new ArrayList<>(Arrays.asList(this.validGroups));
+		List validGroupsList = new ArrayList<>(Arrays.asList(this.VALID_GROUPS));
 		validGroupsList.removeAll(Arrays.asList("COAL", "IRON", "GOLD", "EMERALD"));
 		Object[] validGroupsGold = validGroupsList.toArray(new String[validGroupsList.size()]);
 		
@@ -459,7 +459,7 @@ public class DonateListener extends SexyEvent {
 			return;
 		}
 		
-		List validGroupsList = new ArrayList<>(Arrays.asList(this.validGroups));
+		List validGroupsList = new ArrayList<>(Arrays.asList(this.VALID_GROUPS));
 		validGroupsList.removeAll(Arrays.asList("COAL", "IRON", "GOLD", "EMERALD", "DIAMOND"));
 		Object[] validGroupsGold = validGroupsList.toArray(new String[validGroupsList.size()]);
 		

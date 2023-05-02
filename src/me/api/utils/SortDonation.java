@@ -81,7 +81,7 @@ public class SortDonation {
 	}
 	
 	public static void sort(Player player) {
-		String team = SortDonation.GROUPS.getOrDefault(PermissionsEx.getUser(player).getGroups()[0].getName(), "0");
+		String team = SortDonation.GROUPS.getOrDefault(PermissionsEx.getUser(player).getGroups()[0].getName(), "13");
 		
 		SortDonation.scoreboard.getTeam(team).addPlayer(player);
 		player.setDisplayName(SortDonation.scoreboard.getTeam(team).getPrefix() + player.getName());
