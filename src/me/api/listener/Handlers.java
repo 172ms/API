@@ -10,6 +10,8 @@ import org.bukkit.entity.*;
 import org.bukkit.plugin.*;
 import org.bukkit.event.*;
 import me.api.data.*;
+import me.api.utils.SortDonation;
+
 import org.bukkit.*;
 import java.util.*;
 
@@ -47,6 +49,8 @@ public class Handlers extends SexyEvent {
 		}
 		
 		DatabaseManager.getDatabaseManager().save(playerAPI);
+		
+		SortDonation.sort(player);
 	}
 	
 	@EventHandler

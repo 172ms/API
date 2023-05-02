@@ -6,14 +6,13 @@ import org.bukkit.plugin.java.*;
 import me.api.configuration.*;
 import me.api.listener.*;
 import me.api.runnable.*;
+import me.api.utils.SortDonation;
 import me.api.command.*;
 import me.api.data.*;
 import org.bukkit.*;
 import java.text.*;
 
 public class API extends JavaPlugin {
-
-	
 	private void registerCommands() {
 		new BroadcastCommand().register();
 		new ClearCommand().register();
@@ -76,6 +75,9 @@ public class API extends JavaPlugin {
 		this.registerCommands();
 		this.registerListeners();
 		
+		//SEXYSORTDONATION
+		SortDonation.setup();
+		
 		//RUNNABLE
 		new TablistTag().runTaskTimer(this, 0L, 100L);
 		
@@ -89,6 +91,8 @@ public class API extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		DatabaseManager.getDatabaseManager().closeConnection();
+		
+		SortDonation.unload();
 	}
 	
 	public static API getInstance() {
