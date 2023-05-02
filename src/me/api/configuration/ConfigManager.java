@@ -8,7 +8,7 @@ import api.*;
 
 public class ConfigManager {
     private static final ConfigManager configManager = new ConfigManager();
-    private final API plugin = API.getPlugin(API.class);
+    private final API plugin = API.getInstance();
     private FileConfiguration config;
     private File configFile;
     
@@ -30,7 +30,7 @@ public class ConfigManager {
     }
     
     public void setup() {
-    	this.configFile = new File(plugin.getDataFolder(), "config.yml");
+    	this.configFile = new File(API.getInstance().getDataFolder(), "config.yml");
     	
         if (!this.configFile.exists()) {
             this.configFile.getParentFile().mkdirs();

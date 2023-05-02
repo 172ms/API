@@ -76,6 +76,7 @@ public abstract class SexyCommand implements CommandExecutor {
 				
 				field.setAccessible(true);
 				SexyCommand.commandMap = (CommandMap)field.get(Bukkit.getServer());
+				
 				return this.getCommandMap();
 			}
 			catch (Exception e) {

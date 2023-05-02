@@ -141,6 +141,7 @@ public class DonateListener extends SexyEvent {
 			if (playerAPI.getRUB() >= Prefix.COAL_COST) {
 				playerAPI.removeRUB(Prefix.COAL_COST);
 				DatabaseManager.getDatabaseManager().save(playerAPI);
+				
 				PermissionsEx.getUser(player).setGroups(new String[] { "COAL" });
 				SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.COAL);
 				player.closeInventory();
@@ -191,6 +192,7 @@ public class DonateListener extends SexyEvent {
 				if (playerAPI.getRUB() >= Prefix.IRON_COST - Prefix.COAL_COST) {
 					playerAPI.removeRUB(Prefix.IRON_COST - Prefix.COAL_COST);
 					DatabaseManager.getDatabaseManager().save(playerAPI);
+					
 					PermissionsEx.getUser(player).setGroups(new String[] { "IRON" });
 					SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.IRON + "! &aДоплатив " + (Prefix.IRON_COST - Prefix.COAL_COST) + " RUB.");
 					player.closeInventory();
@@ -206,6 +208,7 @@ public class DonateListener extends SexyEvent {
 			if (playerAPI.getRUB() >= 149) {
 				playerAPI.removeRUB(149);
 				DatabaseManager.getDatabaseManager().save(playerAPI);
+				
 				PermissionsEx.getUser(player).setGroups(new String[] { "IRON" });
 				SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.IRON);
 				player.closeInventory();
@@ -256,6 +259,7 @@ public class DonateListener extends SexyEvent {
 				if (playerAPI.getRUB() >= Prefix.GOLD_COST - Prefix.COAL_COST) {
 					playerAPI.removeRUB(Prefix.GOLD_COST - Prefix.COAL_COST);
 					DatabaseManager.getDatabaseManager().save(playerAPI);
+					
 					PermissionsEx.getUser(player).setGroups(new String[] { "GOLD" });
 					SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.GOLD + "! &aДоплатив " + (Prefix.GOLD_COST - Prefix.COAL_COST) + " RUB.");
 					player.closeInventory();
@@ -272,6 +276,7 @@ public class DonateListener extends SexyEvent {
 				if (playerAPI.getRUB() >= Prefix.GOLD_COST - Prefix.IRON_COST) {
 					playerAPI.removeRUB(Prefix.GOLD_COST - Prefix.IRON_COST);
 					DatabaseManager.getDatabaseManager().save(playerAPI);
+					
 					PermissionsEx.getUser(player).setGroups(new String[] { "GOLD" });
 					SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.GOLD + "! &aДоплатив " + (Prefix.GOLD_COST - Prefix.IRON_COST) + " RUB.");
 					player.closeInventory();
@@ -287,6 +292,7 @@ public class DonateListener extends SexyEvent {
 			if (playerAPI.getRUB() >= 299) {
 				playerAPI.removeRUB(299);
 				DatabaseManager.getDatabaseManager().save(playerAPI);
+				
 				PermissionsEx.getUser(player).setGroups(new String[] { "GOLD" });
 				SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.GOLD);
 				player.closeInventory();
@@ -334,6 +340,7 @@ public class DonateListener extends SexyEvent {
 				if (playerAPI.getRUB() >= Prefix.EMERALD_COST - Prefix.COAL_COST) {
 					playerAPI.removeRUB(Prefix.EMERALD_COST - Prefix.COAL_COST);
 					DatabaseManager.getDatabaseManager().save(playerAPI);
+					
 					PermissionsEx.getUser(player).setGroups(new String[] { "EMERALD" });
 					SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.EMERALD + "! &aДоплатив " + (Prefix.EMERALD_COST - Prefix.IRON_COST) + " RUB.");
 					player.closeInventory();
@@ -350,6 +357,7 @@ public class DonateListener extends SexyEvent {
 				if (playerAPI.getRUB() >= Prefix.EMERALD_COST - Prefix.IRON_COST) {
 					playerAPI.removeRUB(Prefix.EMERALD_COST - Prefix.IRON_COST);
 					DatabaseManager.getDatabaseManager().save(playerAPI);
+					
 					PermissionsEx.getUser(player).setGroups(new String[] { "EMERALD" });
 					SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.EMERALD + "! &aДоплатив " + (Prefix.EMERALD_COST - Prefix.IRON_COST) + " RUB.");
 					player.closeInventory();
@@ -366,6 +374,7 @@ public class DonateListener extends SexyEvent {
 				if (playerAPI.getRUB() >= Prefix.EMERALD_COST - Prefix.GOLD_COST) {
 					playerAPI.removeRUB(Prefix.EMERALD_COST - Prefix.GOLD_COST);
 					DatabaseManager.getDatabaseManager().save(playerAPI);
+					
 					PermissionsEx.getUser(player).setGroups(new String[] { "EMERALD" });
 					SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.EMERALD + "! &aДоплатив " + (Prefix.EMERALD_COST - Prefix.GOLD_COST) + " RUB.");
 					player.closeInventory();
@@ -381,6 +390,7 @@ public class DonateListener extends SexyEvent {
 			if (playerAPI.getRUB() >= 599) {
 				playerAPI.removeRUB(599);
 				DatabaseManager.getDatabaseManager().save(playerAPI);
+				
 				PermissionsEx.getUser(player).setGroups(new String[] { "EMERALD" });
 				SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.EMERALD);
 				player.closeInventory();
@@ -427,6 +437,7 @@ public class DonateListener extends SexyEvent {
 			if (playerAPI.getRUB() >= 1199) {
 				playerAPI.removeRUB(1199);
 				DatabaseManager.getDatabaseManager().save(playerAPI);
+				
 				PermissionsEx.getUser(player).setGroups(new String[] { "DIAMOND" });
 				SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.DIAMOND);
 				player.closeInventory();
@@ -473,6 +484,7 @@ public class DonateListener extends SexyEvent {
 			if (playerAPI.getRUB() >= 2399) {
 				playerAPI.removeRUB(2399);
 				DatabaseManager.getDatabaseManager().save(playerAPI);
+				
 				PermissionsEx.getUser(player).setGroups(new String[] { "FLUX" });
 				SexyMessage.send(player, "&aВы успешно купили привилегию " + Prefix.FLUX);
 				player.closeInventory();
