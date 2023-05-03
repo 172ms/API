@@ -33,7 +33,7 @@ public class SexyTPS {
 			color = "§c";
 		}
 		
-		double formattedTPS = Math.min(Math.round(tps * 100.D) / 100.D, 20.0);
+		double formattedTPS = Math.min(Math.round(tps * 100.D) / 100.D, 20.D);
 		
 		return color + formattedTPS;
 	}
