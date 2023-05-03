@@ -25,7 +25,7 @@ public class GUI {
 		
 		inventory.setItem(11, CustomItem.create(Material.COAL, Prefix.COAL, new String[] {
 				" §fИнформация о донате:",
-				"   §fСтоимость §a> §a" + Prefix.COAL_COST + " RUB",
+				"   §fСтоимость §a§l> §a" + Prefix.COAL_COST + " RUB",
 				"   §fДля более подробной информации нажмите колёсиком мыши",
 				"",
 				" §aНажмите, чтобы купить"
@@ -33,7 +33,7 @@ public class GUI {
 		
 		inventory.setItem(15, CustomItem.create(Material.IRON_INGOT, Prefix.IRON, new String[] {
 				" §fИнформация о донате:",
-				"   §fСтоимость §a> §a> " + Prefix.IRON_COST + " RUB",
+				"   §fСтоимость §a§l> §a" + Prefix.IRON_COST + " RUB",
 				"   §fДля более подробной информации нажмите колёсиком мыши",
 				"",
 				" §aНажмите, чтобы купить"
@@ -41,7 +41,7 @@ public class GUI {
 		
 		inventory.setItem(21, CustomItem.create(Material.GOLD_INGOT, Prefix.GOLD, new String[] {
 				" §fИнформация о донате:",
-				"   §fСтоимость §a> §a" + Prefix.GOLD_COST + " RUB",
+				"   §fСтоимость §a§l> §a" + Prefix.GOLD_COST + " RUB",
 				"   §fДля более подробной информации нажмите колёсиком мыши",
 				"",
 				" §aНажмите, чтобы купить"
@@ -49,7 +49,7 @@ public class GUI {
 		
 		inventory.setItem(22, CustomItem.create(Material.EMERALD, Prefix.EMERALD, new String[] {
 				" §fИнформация о донате:",
-				"   §fСтоимость §a> §a" + Prefix.EMERALD_COST + " RUB",
+				"   §fСтоимость §a§l> §a" + Prefix.EMERALD_COST + " RUB",
 				"   §fДля более подробной информации нажмите колёсиком мыши",
 				"",
 				" §aНажмите, чтобы купить"
@@ -57,7 +57,7 @@ public class GUI {
 		
 		inventory.setItem(23, CustomItem.create(Material.DIAMOND, Prefix.DIAMOND, new String[] {
 				" §fИнформация о донате:",
-				"   §fСтоимость §a> §a" + Prefix.DIAMOND_COST + " RUB",
+				"   §fСтоимость §a§l> §a" + Prefix.DIAMOND_COST + " RUB",
 				"   §fДля более подробной информации нажмите колёсиком мыши",
 				"",
 				" §aНажмите, чтобы купить"

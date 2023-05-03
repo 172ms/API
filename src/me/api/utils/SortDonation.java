@@ -66,28 +66,34 @@ public class SortDonation {
 	}
 	
 	public static void setup() {
-		SortDonation.scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
-		
-		Arrays.asList(SortDonation.TEAM_NAMES).forEach(teamNAME -> {
-			String prefix = ConfigManager.getConfigManager().getConfig().getString(SortDonation.PREFIX_PATH + SortDonation.PREFIXES[Arrays.asList(SortDonation.TEAM_NAMES).indexOf(teamNAME)]).replace("&", "§");
+		if (ConfigManager.getConfigManager().getConfig().getBoolean("tablistTag.LOBBY")) {
+			SortDonation.scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
 			
-			SortDonation.scoreboard.registerNewTeam(teamNAME);
-			SortDonation.scoreboard.getTeam(teamNAME).setPrefix(prefix);
-		});
+			Arrays.asList(SortDonation.TEAM_NAMES).forEach(teamNAME -> {
+				String prefix = ConfigManager.getConfigManager().getConfig().getString(SortDonation.PREFIX_PATH + SortDonation.PREFIXES[Arrays.asList(SortDonation.TEAM_NAMES).indexOf(teamNAME)]).replace("&", "§");
+				
+				SortDonation.scoreboard.registerNewTeam(teamNAME);
+				SortDonation.scoreboard.getTeam(teamNAME).setPrefix(prefix);
+			});
+		}
 	}
 	
 	public static void unload() {
-		Arrays.stream(SortDonation.TEAM_NAMES).forEach(teamNAME -> SortDonation.scoreboard.getTeam(teamNAME).unregister());
+		if (ConfigManager.getConfigManager().getConfig().getBoolean("tablistTag.LOBBY")) {
+			Arrays.stream(SortDonation.TEAM_NAMES).forEach(teamNAME -> SortDonation.scoreboard.getTeam(teamNAME).unregister());
+		}
 	}
 	
 	public static void sort(Player player) {
-		String team = SortDonation.GROUPS.getOrDefault(PermissionsEx.getUser(player).getGroups()[0].getName(), "13");
-		
-		SortDonation.scoreboard.getTeam(team).addPlayer(player);
-		player.setDisplayName(SortDonation.scoreboard.getTeam(team).getPrefix() + player.getName());
-		
-		Bukkit.getOnlinePlayers().forEach(onlinePlayers -> {
-			onlinePlayers.setScoreboard(SortDonation.scoreboard);
-		});
+		if (ConfigManager.getConfigManager().getConfig().getBoolean("tablistTag.LOBBY")) {
+			String team = SortDonation.GROUPS.getOrDefault(PermissionsEx.getUser(player).getGroups()[0].getName(), "13");
+			
+			SortDonation.scoreboard.getTeam(team).addPlayer(player);
+			player.setDisplayName(SortDonation.scoreboard.getTeam(team).getPrefix() + player.getName());
+			
+			Bukkit.getOnlinePlayers().forEach(onlinePlayers -> {
+				onlinePlayers.setScoreboard(SortDonation.scoreboard);
+			});
+		}
 	}
 }

@@ -5,7 +5,7 @@ import org.bukkit.ChatColor;
 
 public class SexyColorize {
 	public static String colorize(Player player, String message) {
-		if (player.hasPermission("chat.color")) {
+		if (player.hasPermission("fluxmber.color")) {
 			return ChatColor.translateAlternateColorCodes('&', message);
 		}
 		return message;

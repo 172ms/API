@@ -20,9 +20,12 @@ public class BroadcastCommand extends SexyCommand {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (!(sender instanceof Player)) {
-			String message = String.join(" ", args).trim().replace("&", "§").replaceAll("\\s+", " ");
+			String message = String.join(" ", args).trim()
+			.replaceAll("&([0-9a-fk-orA-FK-OR])\\s*", "§$1")
+			.replaceAll("\\s+", " ");
 			
-			if (message.replaceAll("[&§][0-9a-zA-Z.,/?!@#$%^&*()-=_+\\[\\]{}|;':\"<>\"]", "").trim().isEmpty() || message.replaceAll("§", "").trim().isEmpty()) {
+			if (message.replaceAll("[&§][0-9a-zA-Z.,/?!@#$%^&*()-=_+\\[\\]{}|;':\"<>\"]", "").trim().isEmpty()
+			|| message.replaceAll("[&§]", "").trim().isEmpty()) {
 				SexyMessage.send(sender, "&cВведите сообщение!");
 				return true;
 			}
@@ -38,9 +41,12 @@ public class BroadcastCommand extends SexyCommand {
 			return true;
 		}
 		
-		String message = String.join(" ", args).trim().replace("&", "§").replaceAll("\\s+", " ");
+		String message = String.join(" ", args).trim()
+		.replaceAll("&([0-9a-fk-orA-FK-OR])\\s*", "§$1")
+		.replaceAll("\\s+", " ");
 		
-		if (message.replaceAll("[&§][0-9a-zA-Z.,/?!@#$%^&*()-=_+\\[\\]{}|;':\"<>\"]", "").trim().isEmpty() || message.replaceAll("§", "").trim().isEmpty()) {
+		if (message.replaceAll("[&§][0-9a-zA-Z.,/?!@#$%^&*()-=_+\\[\\]{}|;':\"<>\"]", "").trim().isEmpty()
+		|| message.replaceAll("[&§]", "").trim().isEmpty()) {
 			SexyMessage.send(sender, "&cВведите сообщение!");
 			return true;
 		}
