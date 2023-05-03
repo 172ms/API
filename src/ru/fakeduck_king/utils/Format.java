@@ -2,6 +2,10 @@ package ru.fakeduck_king.utils;
 
 import java.text.DecimalFormat;
 
+import org.bukkit.Bukkit;
+
+import ru.fakeduck_king.messages.Prefix;
+
 public class Format {
 	public static String formatDouble(float value) {
 		try {
@@ -18,7 +22,7 @@ public class Format {
 			return String.format("%s%s", decimalFormat.format(value).replace(',', '.'), array[index]);
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+			Bukkit.getServer().getConsoleSender().sendMessage(Prefix.ERROR + "FAILED TO GET A NUMBER");
 			return null;
 		}
 	}

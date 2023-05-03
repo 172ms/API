@@ -1,5 +1,7 @@
 package me.api.data;
 
+import ru.fakeduck_king.messages.*;
+import org.bukkit.*;
 import java.sql.*;
 
 public class DatabaseManager {
@@ -24,20 +26,25 @@ public class DatabaseManager {
 			Statement statement = this.getConnection().createStatement();
 		)
 		{
-			statement.execute("CREATE TABLE IF NOT EXISTS playerAPI (UUID varchar(100) primary key, RUB int, lastJoin varchar(100), firstJoin varchar(100))");
+			statement.execute("CREATE TABLE IF NOT EXISTS playerAPI (UUID varchar(100) primary key, RUB int, lastJoin varchar(100), firstJoin varchar(100), messageStaff boolean, messageDonators boolean)");
+            Bukkit.getServer().getConsoleSender().sendMessage(Prefix.SUCCESSFULLY + "DATABASE START");
 		}
-		catch (SQLException ignore) {}
+		catch (SQLException e) {
+			Bukkit.getServer().getConsoleSender().sendMessage(Prefix.ERROR + "FAILED TO CONNECT DATABASE");
+		}
 	}
 	
 	public void create(PlayerAPI playerAPI) {
 		try (
-			PreparedStatement preparedStatement = this.getConnection().prepareStatement("INSERT INTO playerAPI(UUID, RUB, lastJoin, firstJoin) VALUES (?, ?, ?, ?)");
+			PreparedStatement preparedStatement = this.getConnection().prepareStatement("INSERT INTO playerAPI(UUID, RUB, lastJoin, firstJoin, messageStaff, messageDonators) VALUES (?, ?, ?, ?, ?, ?)");
 		)
 		{
 			preparedStatement.setString(1, playerAPI.getName());
 			preparedStatement.setInt(2, playerAPI.getRUB());
 			preparedStatement.setString(3, playerAPI.getLastJoin());
 			preparedStatement.setString(4, playerAPI.getFirstJoin());
+			preparedStatement.setBoolean(5, playerAPI.getMessageStaff());
+			preparedStatement.setBoolean(6, playerAPI.getMessageDonators());
 			preparedStatement.executeUpdate();
 		}
 		catch (SQLException ignore) {}
@@ -52,7 +59,7 @@ public class DatabaseManager {
 			preparedStatement.setString(1, name);
 			ResultSet resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {
-				playerAPI = new PlayerAPI(resultSet.getString("UUID"), resultSet.getInt("RUB"), resultSet.getString("lastJoin"), resultSet.getString("firstJoin"));
+				playerAPI = new PlayerAPI(resultSet.getString("UUID"), resultSet.getInt("RUB"), resultSet.getString("lastJoin"), resultSet.getString("firstJoin"), resultSet.getBoolean("messageStaff"), resultSet.getBoolean("messageDonators"));
 			}
 		}
 		catch (SQLException ignore) {}
@@ -61,13 +68,15 @@ public class DatabaseManager {
 	
 	public void save(PlayerAPI playerAPI) {
 		try (
-			PreparedStatement preparedStatement = this.getConnection().prepareStatement("UPDATE playerAPI SET RUB = ?, lastJoin = ?, firstJoin = ? WHERE UUID = ?");
+			PreparedStatement preparedStatement = this.getConnection().prepareStatement("UPDATE playerAPI SET RUB = ?, lastJoin = ?, firstJoin = ?, messageStaff = ?, messageDonators = ? WHERE UUID = ?");
 		)
 		{
 			preparedStatement.setInt(1, playerAPI.getRUB());
 			preparedStatement.setString(2, playerAPI.getLastJoin());
 			preparedStatement.setString(3, playerAPI.getFirstJoin());
-			preparedStatement.setString(4, playerAPI.getName());
+			preparedStatement.setBoolean(4, playerAPI.getMessageStaff());
+			preparedStatement.setBoolean(5, playerAPI.getMessageDonators());
+			preparedStatement.setString(6, playerAPI.getName());
 			preparedStatement.executeUpdate();
 		}
 		catch (SQLException ignore) {}

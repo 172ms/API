@@ -15,6 +15,7 @@ import java.text.*;
 public class API extends JavaPlugin {
 	private void registerCommands() {
 		new BroadcastCommand().register();
+		new ClearChatCommand().register();
 		new ClearCommand().register();
 		new DonateCommand().register();
 		new EnderchestCommand().register();

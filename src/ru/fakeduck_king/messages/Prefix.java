@@ -6,6 +6,9 @@ public class Prefix {
 	public static final String BROADCAST = "§8[§aBROADCAST§8] §a> §f";
 	public static final String ERROR_PERMISSIONS = "§cУ вас недостаточно прав!";
 	
+	public static final String ERROR = "§8[§cERROR§8] §c";
+	public static final String SUCCESSFULLY = "§8[§a!§8] §a";
+	
 	//DONATE NAME
 	public static final String COAL = "§0§lCOAL";
 	public static final String IRON = "§7§lIRON";

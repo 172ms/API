@@ -5,6 +5,7 @@ import org.bukkit.configuration.*;
 import org.bukkit.*;
 import java.io.*;
 import api.*;
+import ru.fakeduck_king.messages.Prefix;
 
 public class ConfigManager {
     private static final ConfigManager configManager = new ConfigManager();
@@ -25,7 +26,7 @@ public class ConfigManager {
             this.config.save(this.configFile);
         }
         catch (IOException e) {
-            Bukkit.getServer().getConsoleSender().sendMessage("§cAll configs could not be saved");
+            Bukkit.getServer().getConsoleSender().sendMessage(Prefix.ERROR + "ALL CONFIGS COULD NOT BE SAVED");
         }
     }
     
@@ -41,10 +42,10 @@ public class ConfigManager {
         
         try {
             this.config.load(this.configFile);
-            Bukkit.getServer().getConsoleSender().sendMessage("§aAll configs load");
+            Bukkit.getServer().getConsoleSender().sendMessage(Prefix.SUCCESSFULLY + "ALL CONFIGS LOAD");
         }
         catch (IOException | InvalidConfigurationException e) {
-        	Bukkit.getServer().getConsoleSender().sendMessage("§cAll configs could not be load");
+        	Bukkit.getServer().getConsoleSender().sendMessage(Prefix.ERROR + "ALL CONFIGS COULD NOT BE LOAD");
         }
     }
 }
