@@ -47,7 +47,7 @@ public class BroadcastCommand extends SexyCommand {
 		
 		if (message.replaceAll("[&§][0-9a-zA-Z.,/?!@#$%^&*()-=_+\\[\\]{}|;':\"<>\"]", "").trim().isEmpty()
 		|| message.replaceAll("[&§]", "").trim().isEmpty()) {
-			SexyMessage.send(sender, "&cВведите сообщение!");
+			SexyMessage.send(player, "&cВведите сообщение!");
 			return true;
 		}
 		

@@ -41,7 +41,7 @@ public class DonatorsCommand extends SexyCommand {
 		}
 		
 		if (args.length == 0) {
-			SexyMessage.send(sender, "&cВведите сообщение!");
+			SexyMessage.send(player, "&cВведите сообщение!");
 			return true;
 		}
 		
@@ -51,7 +51,7 @@ public class DonatorsCommand extends SexyCommand {
 		
 		if (message.replaceAll("[&§][0-9a-zA-Z.,/?!@#$%^&*()-=_+\\[\\]{}|;':\"<>\"]", "").trim().isEmpty()
 		|| message.replaceAll("[&§]", "").trim().isEmpty()) {
-			SexyMessage.send(sender, "&cВведите сообщение!");
+			SexyMessage.send(player, "&cВведите сообщение!");
 			return true;
 		}
 		
@@ -62,7 +62,7 @@ public class DonatorsCommand extends SexyCommand {
 				return;
 			}
 			else if (onlinePlayers.hasPermission("fluxmber.donators")) {
-				SexyDonators.send(onlinePlayers, player.getDisplayName() + " > " + message);
+				SexyDonators.send(onlinePlayers, player.getDisplayName() + ": " + message);
 			}
 		});
 		return true;
