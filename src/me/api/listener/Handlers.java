@@ -44,11 +44,11 @@ public class Handlers extends SexyEvent {
 		
 		Set<Player> notify = SexyAllPlayers.get();
 		
-		String chatGlobalSyntax = ConfigManager.getConfigManager().getConfig().getString("chatGlobal-syntax")
+		String chatGlobalSyntax = ConfigManager.getConfigManager().getConfig().getString("chat-globalSyntax")
 		.replace("%player%", player.getDisplayName())
 		.replace("%message%", SexyColorize.colorize(player, message.substring(1).trim()));
 		
-		String chatLocalSyntax = ConfigManager.getConfigManager().getConfig().getString("chatLocal-syntax").
+		String chatLocalSyntax = ConfigManager.getConfigManager().getConfig().getString("chat-localSyntax").
 		replace("%player%", player.getDisplayName())
 		.replace("%message%", SexyColorize.colorize(player, message));
 		

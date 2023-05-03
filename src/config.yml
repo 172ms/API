@@ -28,8 +28,8 @@ tablistTag:
     NAME-IRON: IRON
     NAME-COAL: COAL
     NAME-DEFAULT: DEFAULT
-chatGlobal-syntax: '%player% > %message%'
-chatLocal-syntax: '%player% > %message%'
+chat-globalSyntax: '%player% > %message%'
+chat-localSyntax: '%player% > %message%'
 chat-globalMessage: '&8[&6G&8] '
 chat-localMessage: '&8[&aL&8] '
 chat-cooldown: 3
