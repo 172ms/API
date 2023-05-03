@@ -4,10 +4,11 @@ import ru.fakeduck_king.utils.player.*;
 import me.api.command.listener.*;
 import org.bukkit.plugin.java.*;
 import me.api.configuration.*;
+import me.api.command.chat.*;
 import me.api.listener.*;
 import me.api.runnable.*;
-import me.api.utils.SortDonation;
 import me.api.command.*;
+import me.api.utils.*;
 import me.api.data.*;
 import org.bukkit.*;
 import java.text.*;
@@ -33,20 +34,22 @@ public class API extends JavaPlugin {
 		new TeleportCommand().register();
 		new TeleportHereCommand().register();
 		new TimeCommand().register();
+		
+		new DonatorsCommand().register();
+		new DonatorsToggleCommand().register();
 	}
 	
 	private void registerListeners() {
 		new DonateListener(getInstance());
+		
 		new Handlers(getInstance());
 	}
 	
 	@Override
 	public void onEnable() {
-		//CONFIGMANAGER
-		ConfigManager.getConfigManager().setup();
-		
-		//DATABASEMANAGER
 		DatabaseManager.getDatabaseManager().setup();
+		
+		ConfigManager.getConfigManager().setup();
 		
 		Bukkit.getServer().getConsoleSender().sendMessage("ANALYSIS"
 		+ "§c\n"
@@ -72,20 +75,15 @@ public class API extends JavaPlugin {
 		
 		Bukkit.getServer().getConsoleSender().sendMessage("§cCurrent date and time: " + dateFormat.format(date));
 		
-		//REGISTER
 		this.registerCommands();
 		this.registerListeners();
 		
-		//SEXYSORTDONATION
 		SortDonation.setup();
 		
-		//RUNNABLE
 		new TablistTag().runTaskTimer(this, 0L, 100L);
 		
-		//COOLDOWN
 		PlayerCooldown.getPlayerCooldown().setup();
 		
-		//PLAYERSET
 		PlayerSet.getPlayerSet().setup();
 	}
 	

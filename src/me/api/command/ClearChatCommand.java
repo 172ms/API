@@ -19,18 +19,26 @@ public class ClearChatCommand extends SexyCommand {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (!(sender instanceof Player)) {
-			sender.sendMessage("You not player!");
+			IntStream.range(0, 100).forEach(i -> {
+				Bukkit.broadcastMessage("");
+			});
+			
+			SexyBroadcast.send("Чат был очищен &a" + sender.getName());
 			return true;
 		}
+		
 		Player player = (Player)sender;
+		
 		if (!player.hasPermission("fluxmber.admin")) {
 			SexyMessage.send(player, this.permissionMessage);
 			return true;
 		}
+		
 		IntStream.range(0, 100).forEach(i -> {
-		    Bukkit.broadcastMessage("");
+			Bukkit.broadcastMessage("");
 		});
+		
 		SexyBroadcast.send("Чат был очищен &a" + player.getName());
-		return true;   
+		return true;
 	}
 }
