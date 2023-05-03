@@ -62,7 +62,7 @@ public class DonatorsCommand extends SexyCommand {
 				return;
 			}
 			else if (onlinePlayers.hasPermission("fluxmber.donators")) {
-				SexyDonators.send(onlinePlayers, onlinePlayers.getDisplayName() + " > " + message);
+				SexyDonators.send(onlinePlayers, player.getDisplayName() + " > " + message);
 			}
 		});
 		return true;
