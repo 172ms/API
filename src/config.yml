@@ -1,0 +1,39 @@
+donatorsEnabled: true
+
+tablistTag-header: '&fОнлайн игроков: &a%online% &fиз &a%onlineMAX%'
+tablistTag-footer: '&e&lFLUXMBER.RU'
+tablistTag:
+    PREFIX-DEVELOPER: '&8[&bDEV&8]&f '
+    PREFIX-ADMIN: '&8[&4&lADMIN&8]&f '
+    PREFIX-CURATORBUILDER: '&8[&c&lC&f&l.&2&lBUILDER&8]&f '
+    PREFIX-BUILDER: '&8[&2&lBUILDER&8]&f '
+    PREFIX-CURATORMODERATOR: '&8[&c&lC&f&l.&b&lMODER&8]&f '
+    PREFIX-MODERATOR: '&8[&d&lMODER&8]&f '
+    PREFIX-HELPER: '&8[&3&lHELPER&8]&f '
+    PREFIX-FLUX: '&8[&e&lFLUX&8]&f '
+    PREFIX-DIAMOND: '&8[&b&lDIAMOND&8]&f '
+    PREFIX-EMERALD: '&8[&a&lEMERALD&8]&f '
+    PREFIX-GOLD: '&8[&6&lGOLD&8]&f '
+    PREFIX-IRON: '&8[&7&lIRON&8]&f '
+    PREFIX-COAL: '&8[&0&lCOAL&8]&f '
+    PREFIX-DEFAULT: '&f'
+    NAME-DEVELOPER: DEVELOPER
+    NAME-ADMIN: ADMIN
+    NAME-CURATORBUILDER: CURATORBUILDER
+    NAME-BUILDER: BUILDER
+    NAME-CURATORMODERATOR: CURATORMODERATOR
+    NAME-MODERATOR: MODERATOR
+    NAME-HELPER: HELPER
+    NAME-FLUX: FLUX
+    NAME-DIAMOND: DIAMOND
+    NAME-EMERALD: EMERALD
+    NAME-GOLD: GOLD
+    NAME-IRON: IRON
+    NAME-COAL: COAL
+    NAME-DEFAULT: DEFAULT
+
+chat-globalSyntax: '%player% > %message%'
+chat-localSyntax: '%player% > %message%'
+chat-globalMessage: '&8[&6G&8] '
+chat-localMessage: '&8[&aL&8] '
+chat-cooldown: 3

@@ -1,0 +1,5 @@
+name: API
+main: api.API
+version: 1.0
+author: fakeduck_king
+api-version: 1.13
