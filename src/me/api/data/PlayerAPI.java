@@ -132,7 +132,7 @@ public class PlayerAPI {
 	public List<String> getFriends() {
 		return this.friends;
 	}
-
+	
 	public void addFriend(String name) {
 		this.friends.add(name);
 	}

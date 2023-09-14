@@ -68,11 +68,11 @@ public class SortDonation {
 	public static void setup() {
 		SortDonation.scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
 		
-		Arrays.asList(SortDonation.TEAM_NAMES).forEach(teamNAME -> {
-			String prefix = ConfigManager.getConfigManager().getConfig().getString(SortDonation.PREFIX_PATH + SortDonation.PREFIXES[Arrays.asList(SortDonation.TEAM_NAMES).indexOf(teamNAME)]).replace("&", "§");
+		Arrays.asList(SortDonation.TEAM_NAMES).forEach(teamName -> {
+			String prefix = ConfigManager.getConfigManager().getConfig().getString(SortDonation.PREFIX_PATH + SortDonation.PREFIXES[Arrays.asList(SortDonation.TEAM_NAMES).indexOf(teamName)]).replace("&", "§");
 			
-			SortDonation.scoreboard.registerNewTeam(teamNAME);
-			SortDonation.scoreboard.getTeam(teamNAME).setPrefix(prefix);
+			SortDonation.scoreboard.registerNewTeam(teamName);
+			SortDonation.scoreboard.getTeam(teamName).setPrefix(prefix);
 		});
 	}
 	

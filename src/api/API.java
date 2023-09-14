@@ -3,6 +3,7 @@ package api;
 import ru.fakeduck_king.utils.player.*;
 import me.api.command.listener.*;
 import me.api.command.friends.*;
+import me.api.listener.oldpvp.*;
 import org.bukkit.plugin.java.*;
 import me.api.configuration.*;
 import me.api.command.chat.*;
@@ -58,6 +59,8 @@ public class API extends JavaPlugin {
 		new DonateListener(getInstance());
 		
 		new Handlers(getInstance());
+		
+		new HandlersPvP(getInstance());
 	}
 	
 	@Override

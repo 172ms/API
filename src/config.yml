@@ -1,4 +1,12 @@
+chat-globalSyntax: '%player% > %message%'
+chat-localSyntax: '%player% > %message%'
+chat-globalMessage: '&8[&6G&8] '
+chat-localMessage: '&8[&aL&8] '
+chat-cooldown: 3
+
 donatorsEnabled: true
+
+oldPvP: true
 
 tablistTag-header: '&fОнлайн игроков: &a%online% &fиз &a%onlineMAX%'
 tablistTag-footer: '&e&lFLUXMBER.RU'
@@ -31,9 +39,3 @@ tablistTag:
     NAME-IRON: IRON
     NAME-COAL: COAL
     NAME-DEFAULT: DEFAULT
-
-chat-globalSyntax: '%player% > %message%'
-chat-localSyntax: '%player% > %message%'
-chat-globalMessage: '&8[&6G&8] '
-chat-localMessage: '&8[&aL&8] '
-chat-cooldown: 3

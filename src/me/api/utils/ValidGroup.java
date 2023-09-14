@@ -25,6 +25,6 @@ public enum ValidGroup {
 	}
 
 	public int getCost() {
-		return cost;
+		return this.cost;
 	}
 }

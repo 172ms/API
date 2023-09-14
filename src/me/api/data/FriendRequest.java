@@ -30,19 +30,21 @@ public class FriendRequest {
 	}
 	
 	public static void addFriendRequest(Player player, Player receiver) {
-		for (FriendRequest friendRequest : FriendRequest.friendRequests) {
-			if ((friendRequest.getPlayer().equals(player.getName()) && friendRequest.getReceiver().equals(receiver.getName())) ||
-				(friendRequest.getPlayer().equals(receiver.getName()) && friendRequest.getReceiver().equals(player.getName()))) {
-				SexyMessage.send(player, "&cЗапрос на добавление в друзья уже отправлен!");
-				return;
-			}
-		}
+	    boolean isRequest = FriendRequest.friendRequests.stream()
+	    	.anyMatch(friendRequest ->
+	    	(friendRequest.getPlayer().equals(player.getName()) && friendRequest.getReceiver().equals(receiver.getName())) ||
+	    	(friendRequest.getPlayer().equals(receiver.getName()) && friendRequest.getReceiver().equals(player.getName()))
+	    );
+	    
+	    if (isRequest) {
+	    	SexyMessage.send(player, "&cЗапрос на добавление в друзья уже отправлен!");
+	    	return;
+	    }
 		
-		FriendRequest friendRequest = new FriendRequest(player.getName(), receiver.getName());
+	    FriendRequest friendRequest = new FriendRequest(player.getName(), receiver.getName());
+	    FriendRequest.friendRequests.add(friendRequest);
 		
-		FriendRequest.friendRequests.add(friendRequest);
-		
-		SexyMessage.send(player, "Вы отправили запрос на добавление в друзья игроку &a" + receiver.getName());
+		SexyMessage.send(player, "Вы отправили запрос на добавление в друзья игроку &a" + receiver.getName() + ".");
 		
 		SexyMessage.send(receiver, "&a" + player.getName() + " &fхочет добавить вас в друзья.");
 		SexyMessage.send(receiver, "Чтобы принять запрос, используйте: &a/friends accept " + player.getName());
@@ -51,16 +53,16 @@ public class FriendRequest {
 		Bukkit.getScheduler().scheduleSyncDelayedTask(API.getInstance(), () -> {
 			if (FriendRequest.friendRequests.contains(friendRequest)) {
 				FriendRequest.friendRequests.remove(friendRequest);
-				SexyMessage.send(player, "&cИстекло время ожидания запроса на добавление в друзья к " + receiver.getName());
-				SexyMessage.send(receiver, "&cИстекло время ожидания запроса на добавление в друзья к " + receiver.getName());
+				SexyMessage.send(player, "&cИстекло время ожидания запроса на добавление в друзья к " + receiver.getName() + ".");
+				SexyMessage.send(receiver, "&cИстекло время ожидания запроса на добавление в друзья к " + receiver.getName() + ".");
 			}
 		}, 1200L);
 	}
 	
 	public static void cancelFriendRequest(Player player, Player receiver) {
 		FriendRequest.friendRequests.removeIf(friendRequest ->
-	        (friendRequest.getPlayer().equals(player.getName()) && friendRequest.getReceiver().equals(receiver.getName())) ||
-	        (friendRequest.getPlayer().equals(receiver.getName()) && friendRequest.getReceiver().equals(player.getName()))
-	    );
+			(friendRequest.getPlayer().equals(player.getName()) && friendRequest.getReceiver().equals(receiver.getName())) ||
+			(friendRequest.getPlayer().equals(receiver.getName()) && friendRequest.getReceiver().equals(player.getName()))
+		);
 	}
 }

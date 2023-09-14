@@ -1,15 +1,13 @@
 package ru.fakeduck_king.utils;
 
-import java.text.DecimalFormat;
-
-import org.bukkit.Bukkit;
-
 import ru.fakeduck_king.messages.Prefix;
+import java.text.DecimalFormat;
+import org.bukkit.Bukkit;
 
 public class Format {
 	public static String formatDouble(float value) {
 		try {
-			String[] array = {"", "K", "M"};
+			String[] array = { "", "K", "M" };
 			int index = 0;
 			
 			while (value >= 1000 && index < array.length - 1) {
