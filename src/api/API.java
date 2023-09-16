@@ -13,6 +13,7 @@ import me.api.command.*;
 import me.api.utils.*;
 import me.api.data.*;
 import org.bukkit.*;
+import org.bukkit.attribute.Attribute;
 
 public class API extends JavaPlugin {
 	private void registerCommands() {
@@ -61,6 +62,13 @@ public class API extends JavaPlugin {
 		new Handlers(getInstance());
 		
 		new HandlersPvP(getInstance());
+		
+		if (ConfigManager.getConfigManager().getConfig().getBoolean("oldPvP")) {
+			Bukkit.getOnlinePlayers().forEach(player -> player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(100.D));
+		}
+		else {
+			Bukkit.getOnlinePlayers().forEach(player -> player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(4.D));
+		}
 	}
 	
 	@Override
@@ -103,6 +111,17 @@ public class API extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		DatabaseManager.getDatabaseManager().closeConnection();
+		
+		if (ConfigManager.getConfigManager().getConfig().getBoolean("oldPvP")) {
+			Bukkit.getOnlinePlayers().forEach(player ->
+				player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(100.D)
+			);
+		}
+		else {
+			Bukkit.getOnlinePlayers().forEach(player ->
+				player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(4.D)
+			);
+		}
 		
 		SortDonation.unload();
 	}

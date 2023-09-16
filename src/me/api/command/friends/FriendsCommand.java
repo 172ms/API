@@ -1,16 +1,14 @@
 package me.api.command.friends;
 
 import ru.fakeduck_king.register.commands.*;
+import com.google.common.collect.*;
 import ru.fakeduck_king.messages.*;
 import org.bukkit.command.*;
 import org.bukkit.entity.*;
-
-import com.google.common.collect.Lists;
-
+import java.util.stream.*;
 import me.api.data.*;
 import org.bukkit.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @SuppressWarnings("deprecation")
 public class FriendsCommand extends SexyCommand {
@@ -50,13 +48,13 @@ public class FriendsCommand extends SexyCommand {
 				else {
 					playerAPI.getFriends().forEach(friends -> {
 						OfflinePlayer target = Bukkit.getOfflinePlayer(friends);
-						PlayerAPI friendAPI = PlayerAPI.getPlayerAPI(target);
+						PlayerAPI targetAPI = PlayerAPI.getPlayerAPI(target);
 						
 						if (target.isOnline()) {
 							player.sendMessage("§a" + target.getName() + " (онлайн)");
 						}
 						else {
-							player.sendMessage("§c" + target.getName() + " (последний раз был в сети " + friendAPI.getLastJoin() + ")");
+							player.sendMessage("§c" + target.getName() + " (последний раз был в сети " + targetAPI.getLastJoin() + ")");
 						}
 					});
 				}
@@ -83,15 +81,22 @@ public class FriendsCommand extends SexyCommand {
 				}
 				
 				PlayerAPI playerAPI = PlayerAPI.getPlayerAPI(player);
-				List<String> friendsList = playerAPI.getFriends();
+				PlayerAPI targetAPI = PlayerAPI.getPlayerAPI(player);
+				List<String> playerAPIFriendsList = playerAPI.getFriends();
+				List<String> targetAPIFriendsList = targetAPI.getFriends();
 				
-				if (friendsList.contains(target.getName())) {
+				if (playerAPIFriendsList.contains(target.getName())) {
 					SexyMessage.send(player, "&cИгрок " + args[1] + " уже есть в вашем списке друзей!");
 					return true;
 				}
 				
-				if (friendsList.size() >= 10) {
+				if (playerAPIFriendsList.size() >= 10) {
 					SexyMessage.send(player, "&cВы достигли максимального лимита друзей (10)!");
+					return true;
+				}
+				
+				if (targetAPIFriendsList.size() >= 10) {
+					SexyMessage.send(player, "&c" + target.getName() + " достиг максимального лимита друзей (10)!");
 					return true;
 				}
 				
@@ -112,12 +117,12 @@ public class FriendsCommand extends SexyCommand {
 					return true;
 				}
 				
-				PlayerAPI friendAPI = PlayerAPI.getPlayerAPI(target);
+				PlayerAPI targetAPI = PlayerAPI.getPlayerAPI(target);
 				
 				playerAPI.removeFriend(target.getName());
-				friendAPI.removeFriend(player.getName());
+				targetAPI.removeFriend(player.getName());
 				DatabaseManager.getDatabaseManager().save(playerAPI);
-				DatabaseManager.getDatabaseManager().save(friendAPI);
+				DatabaseManager.getDatabaseManager().save(targetAPI);
 				SexyMessage.send(player, "&cВы удалили игрока " + args[1] + " из списка друзей.");
 				return true;
 			}
@@ -139,12 +144,12 @@ public class FriendsCommand extends SexyCommand {
 					return true;
 				}
 				
-				PlayerAPI friendAPI = PlayerAPI.getPlayerAPI(target);
+				PlayerAPI targetAPI = PlayerAPI.getPlayerAPI(target);
 				
 				playerAPI.addFriend(target.getName());
-				friendAPI.addFriend(player.getName());
+				targetAPI.addFriend(player.getName());
 				DatabaseManager.getDatabaseManager().save(playerAPI);
-				DatabaseManager.getDatabaseManager().save(friendAPI);
+				DatabaseManager.getDatabaseManager().save(targetAPI);
 				
 				if (target.isOnline()) {
 					SexyMessage.send((Player)target, player.getName() + " принял ваш запрос на добавление в друзья.");

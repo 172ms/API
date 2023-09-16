@@ -14,7 +14,9 @@ public class TablistTag extends BukkitRunnable {
 				player.setPlayerListHeaderFooter(ChatColor.translateAlternateColorCodes('&', ConfigManager.getConfigManager().getConfig().getString("tablistTag-header"))
 				.replace("%online%", Integer.toString(Bukkit.getOnlinePlayers().size()))
 				.replace("%onlineMAX%", Integer.toString(Bukkit.getMaxPlayers())),
+				
 				ChatColor.translateAlternateColorCodes('&', ConfigManager.getConfigManager().getConfig().getString("tablistTag-footer")));
+				
 				SortDonation.sort(player);
 			});
 		}
