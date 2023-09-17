@@ -2,6 +2,7 @@ package me.api.listener;
 
 import ru.fakeduck_king.register.listeners.*;
 import ru.fakeduck_king.utils.player.*;
+import org.bukkit.event.inventory.*;
 import ru.fakeduck_king.messages.*;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.player.*;
@@ -94,6 +95,22 @@ public class Handlers extends SexyEvent {
 	}
 	
 	@EventHandler
+	public void onPlayerDropItem(PlayerDropItemEvent event) {
+		if (ConfigManager.getConfigManager().getConfig().getBoolean("dropItem")) {
+			event.setCancelled(true);
+		}
+	}
+	
+	@EventHandler
+	public void onInventoryClick(InventoryClickEvent event) {
+		if (ConfigManager.getConfigManager().getConfig().getBoolean("changeInventory")) {
+			if (event.getWhoClicked() != null) {
+				event.setCancelled(true);
+			}
+		}
+	}
+	
+	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		event.setJoinMessage(null);
 		Player player = event.getPlayer();
@@ -125,5 +142,12 @@ public class Handlers extends SexyEvent {
 		
 		playerAPI.setLastJoin(new Date());
 		DatabaseManager.getDatabaseManager().save(playerAPI);
+	}
+	
+	@EventHandler
+	public void onPlayerSwapHandItems(PlayerSwapHandItemsEvent event) {
+		if (ConfigManager.getConfigManager().getConfig().getBoolean("changeInventory")) {
+			event.setCancelled(true);
+		}
 	}
 }

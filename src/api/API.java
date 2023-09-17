@@ -101,7 +101,7 @@ public class API extends JavaPlugin {
 		
 		SortDonation.setup();
 		
-		new TablistTag().runTaskTimer(this, 0L, 100L);
+		new TablistTag().runTaskTimer(this, 0L, 20L);
 		
 		PlayerCooldown.getPlayerCooldown().setup();
 		
