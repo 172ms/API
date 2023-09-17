@@ -90,12 +90,34 @@ public class Handlers extends SexyEvent {
 	}
 	
 	@EventHandler
+	public void onEntityDamage(EntityDamageEvent event) {
+		if (!ConfigManager.getConfigManager().getConfig().getBoolean("fallDamage")) {
+			if (event.getCause() == EntityDamageEvent.DamageCause.FALL) {
+				event.setCancelled(true);
+			}
+		}
+	}
+	
+	@EventHandler
+	public void onFoodLevelChange(FoodLevelChangeEvent event) {
+		if (!ConfigManager.getConfigManager().getConfig().getBoolean("foodLevelChange")) {
+			event.setCancelled(true);
+		}
+	}
+	
+	@EventHandler
 	public void onPlayerDeath(PlayerDeathEvent event) {
 		event.setDeathMessage(null);
 	}
 	
 	@EventHandler
 	public void onPlayerDropItem(PlayerDropItemEvent event) {
+		Player player = event.getPlayer();
+		
+		if (player.hasPermission("fluxmber.admin")) {
+			return;
+		}
+		
 		if (ConfigManager.getConfigManager().getConfig().getBoolean("dropItem")) {
 			event.setCancelled(true);
 		}
@@ -103,6 +125,12 @@ public class Handlers extends SexyEvent {
 	
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
+		Player player = (Player)event.getWhoClicked();
+		
+		if (player.hasPermission("fluxmber.admin")) {
+			return;
+		}
+		
 		if (ConfigManager.getConfigManager().getConfig().getBoolean("changeInventory")) {
 			if (event.getWhoClicked() != null) {
 				event.setCancelled(true);
@@ -113,6 +141,7 @@ public class Handlers extends SexyEvent {
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		event.setJoinMessage(null);
+		
 		Player player = event.getPlayer();
 		OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(player.getName());
 		PlayerAPI playerAPI = PlayerAPI.getPlayerAPI(offlinePlayer);
@@ -136,6 +165,7 @@ public class Handlers extends SexyEvent {
 	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent event) {
 		event.setQuitMessage(null);
+		
 		Player player = event.getPlayer();
 		OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(player.getName());
 		PlayerAPI playerAPI = PlayerAPI.getPlayerAPI(offlinePlayer);
@@ -146,6 +176,12 @@ public class Handlers extends SexyEvent {
 	
 	@EventHandler
 	public void onPlayerSwapHandItems(PlayerSwapHandItemsEvent event) {
+		Player player = event.getPlayer();
+		
+		if (player.hasPermission("fluxmber.admin")) {
+			return;
+		}
+		
 		if (ConfigManager.getConfigManager().getConfig().getBoolean("changeInventory")) {
 			event.setCancelled(true);
 		}

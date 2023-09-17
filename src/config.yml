@@ -10,6 +10,9 @@ donatorsEnabled: true
 
 dropItem: false
 
+fallDamage: false
+foodLevelChange: false
+
 oldPvP: true
 
 tablistTag-header: '&fОнлайн игроков: &a%online% &fиз &a%onlineMAX%'
