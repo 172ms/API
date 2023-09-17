@@ -118,7 +118,7 @@ public class Handlers extends SexyEvent {
 			return;
 		}
 		
-		if (ConfigManager.getConfigManager().getConfig().getBoolean("dropItem")) {
+		if (!ConfigManager.getConfigManager().getConfig().getBoolean("dropItem")) {
 			event.setCancelled(true);
 		}
 	}
@@ -131,7 +131,7 @@ public class Handlers extends SexyEvent {
 			return;
 		}
 		
-		if (ConfigManager.getConfigManager().getConfig().getBoolean("changeInventory")) {
+		if (!ConfigManager.getConfigManager().getConfig().getBoolean("changeInventory")) {
 			if (event.getWhoClicked() != null) {
 				event.setCancelled(true);
 			}
@@ -182,7 +182,7 @@ public class Handlers extends SexyEvent {
 			return;
 		}
 		
-		if (ConfigManager.getConfigManager().getConfig().getBoolean("changeInventory")) {
+		if (!ConfigManager.getConfigManager().getConfig().getBoolean("changeInventory")) {
 			event.setCancelled(true);
 		}
 	}

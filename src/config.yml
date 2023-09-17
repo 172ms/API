@@ -1,4 +1,4 @@
-changeInventory: false
+changeInventory: true
 
 chat-globalSyntax: '%player% > %message%'
 chat-localSyntax: '%player% > %message%'
@@ -8,7 +8,7 @@ chat-cooldown: 3
 
 donatorsEnabled: true
 
-dropItem: false
+dropItem: true
 
 fallDamage: false
 foodLevelChange: false
