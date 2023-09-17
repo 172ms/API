@@ -6,6 +6,7 @@ import me.api.command.friends.*;
 import me.api.listener.oldpvp.*;
 import org.bukkit.plugin.java.*;
 import me.api.configuration.*;
+import org.bukkit.attribute.*;
 import me.api.command.chat.*;
 import me.api.listener.*;
 import me.api.runnable.*;
@@ -13,10 +14,11 @@ import me.api.command.*;
 import me.api.utils.*;
 import me.api.data.*;
 import org.bukkit.*;
-import org.bukkit.attribute.Attribute;
 
 public class API extends JavaPlugin {
 	private void registerCommands() {
+		new APIReloadConfigCommand().register();
+		
 		new BroadcastCommand().register();
 		new ClearChatCommand().register();
 		new ClearCommand().register();

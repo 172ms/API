@@ -21,15 +21,6 @@ public class ConfigManager {
 		return this.config;
 	}
 	
-	public void save() {
-		try {
-			this.config.save(this.configFile);
-		}
-		catch (IOException e) {
-			Bukkit.getServer().getConsoleSender().sendMessage(Prefix.ERROR + "ALL CONFIGS COULD NOT BE SAVED");
-		}
-	}
-	
 	public void setup() {
 		this.configFile = new File(API.getInstance().getDataFolder(), "config.yml");
 		
@@ -47,5 +38,18 @@ public class ConfigManager {
 		catch (IOException | InvalidConfigurationException e) {
 			Bukkit.getServer().getConsoleSender().sendMessage(Prefix.ERROR + "ALL CONFIGS COULD NOT BE LOAD");
 		}
+	}
+	
+	public void save() {
+		try {
+			this.config.save(this.configFile);
+		}
+		catch (IOException e) {
+			Bukkit.getServer().getConsoleSender().sendMessage(Prefix.ERROR + "ALL CONFIGS COULD NOT BE SAVED");
+		}
+	}
+	
+	public void reload() {
+		this.config = YamlConfiguration.loadConfiguration(this.configFile);
 	}
 }
