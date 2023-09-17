@@ -46,7 +46,7 @@ public class API extends JavaPlugin {
 		new TeleportHereCommand().register();
 		new TimeCommand().register();
 		new WeatherCommand().register();
-		//new WhiteListCommand().register();
+		new WhiteListCommand().register();
 		
 		if (ConfigManager.getConfigManager().getConfig().getBoolean("donatorsEnabled")) {
 			new DonatorsCommand().register();

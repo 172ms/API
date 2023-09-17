@@ -198,9 +198,22 @@ public class FriendsCommand extends SexyCommand {
 				}
 			}
 		}
-		else if (args.length == 2) {
+		else if (args[0].equalsIgnoreCase("add")) {
 			list.addAll(Bukkit.getOnlinePlayers().stream()
 			.map(Player::getName)
+			.filter(name -> name.startsWith(args[1]))
+			.collect(Collectors.toList()));
+		}
+		else if (args[0].equalsIgnoreCase("remove")) {
+			PlayerAPI playerAPI = PlayerAPI.getPlayerAPI((Player)sender);
+			list.addAll(playerAPI.getFriends().stream()
+			.filter(name -> name.startsWith(args[1]))
+			.collect(Collectors.toList()));
+		}
+		else if (args[0].equalsIgnoreCase("accept") || args[0].equalsIgnoreCase("cancel")) {
+			list.addAll(FriendRequest.friendRequests.stream()
+			.filter(request -> request.getReceiver().equals(sender.getName()))
+			.map(FriendRequest::getPlayer)
 			.filter(name -> name.startsWith(args[1]))
 			.collect(Collectors.toList()));
 		}
