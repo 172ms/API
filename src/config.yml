@@ -10,8 +10,8 @@ donatorsEnabled: true
 
 dropItem: true
 
-fallDamage: false
-foodLevelChange: false
+fallDamage: true
+foodLevelChange: true
 
 oldPvP: true
 
