@@ -53,11 +53,6 @@ public class Handlers extends SexyEvent {
 		String globalMessage = ChatColor.translateAlternateColorCodes('&', ConfigManager.getConfigManager().getConfig().getString("chat-globalMessage"));
 		String localMessage = ChatColor.translateAlternateColorCodes('&', ConfigManager.getConfigManager().getConfig().getString("chat-localMessage"));
 		
-//		if (notify.size() < 2) {
-//			SexyMessage.send(player, "&cВас никто не слышит.");
-//			return;
-//		}
-		
 		if (message.startsWith("!") && message.substring(1).trim().isEmpty()) {
 			SexyMessage.send(player, "&cВведите сообщение!");
 			return;

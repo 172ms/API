@@ -2,23 +2,19 @@ package me.api.command;
 
 import ru.fakeduck_king.register.commands.*;
 import net.minecraft.server.v1_16_R3.*;
+import com.google.common.collect.*;
 import ru.fakeduck_king.messages.*;
 import org.bukkit.command.*;
 import org.bukkit.entity.*;
-
-import com.google.common.collect.Lists;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import java.util.stream.*;
 import org.bukkit.*;
+import java.util.*;
 
 @SuppressWarnings("deprecation")
 public class WhiteListCommand extends SexyCommand {
 	
 	public WhiteListCommand() {
-		super("wt",
+		super("whitelist",
 		"",
 		"",
 		Prefix.ERROR_PERMISSIONS);
@@ -27,11 +23,89 @@ public class WhiteListCommand extends SexyCommand {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (!(sender instanceof Player)) {
-			return true;
+			if (args.length < 1) {
+				this.sendHelper(sender);
+				return true;
+			}
+			
+			String string = args[0];
+			MinecraftServer minecraftServer = MinecraftServer.getServer();
+			
+			switch (string) {
+				case "on": {
+					if (minecraftServer.getPlayerList().getHasWhitelist()) {
+						SexyMessage.send(sender, "&cБелый список уже включен!");
+						return true;
+					}
+					
+					minecraftServer.getPlayerList().setHasWhitelist(true);
+					SexyMessage.send(sender, "&aБелый список включен.");
+					return true;
+				}
+				
+				case "off": {
+					if (!minecraftServer.getPlayerList().getHasWhitelist()) {
+						SexyMessage.send(sender, "&aБелый список уже выключен!");
+						return true;
+					}
+					
+					minecraftServer.getPlayerList().setHasWhitelist(false);
+					SexyMessage.send(sender, "&cБелый список выключен.");
+					return true;
+				}
+				
+				case "list": {
+					String[] getWhitelisted = minecraftServer.getPlayerList().getWhitelisted();
+					
+					if (getWhitelisted.length == 0) {
+						SexyMessage.send(sender, "&cБелый список пуст!");
+					}
+					else {
+						SexyMessage.send(sender, "В белом списке &a" + getWhitelisted.length + " &fигроков: &a" + String.join(", ", getWhitelisted) + ".");
+					}
+					return true;
+				}
+				
+				case "reload": {
+					minecraftServer.getPlayerList().reloadWhitelist();
+					SexyMessage.send(sender, "&aБелый список перезагружен.");
+					return true;
+				}
+			}
+			switch (string) {
+				case "add": {
+					if (args.length < 2) {
+						SexyMessage.send(sender, "§cИспользуйте правильно команду: /whitelist add §8[§cИгрок§8]");
+						return true;
+					}
+					
+					Bukkit.getOfflinePlayer(args[1]).setWhitelisted(true);
+					SexyMessage.send(sender, "§a" + args[1] + " &fдобавлен в белый список.");
+					return true;
+				}
+				case "remove": {
+					if (args.length < 2) {
+						SexyMessage.send(sender, "§cИспользуйте правильно команду: /whitelist remove §8[§cИгрок§8]");
+						return true;
+					}
+					
+					if (!Bukkit.getWhitelistedPlayers().contains(Bukkit.getOfflinePlayer(args[1]))) {
+						SexyMessage.send(sender, "&cИгрок " + args[1] + " не найден!");
+						return true;
+					}
+					
+					Bukkit.getOfflinePlayer(args[1]).setWhitelisted(false);
+					SexyMessage.send(sender, "§c" + args[1] + " удален из белого списка.");
+					return true;
+				}
+				default: {
+					this.sendHelper(sender);
+					return true;
+				}
+			}
 		}
 		
 		Player player = (Player)sender;
-		MinecraftServer minecraftServer = MinecraftServer.getServer();
 		
 		if (!player.hasPermission("fluxmber.admin")) {
 			SexyMessage.send(player, this.permissionMessage);
@@ -44,11 +118,13 @@ public class WhiteListCommand extends SexyCommand {
 		}
 		
 		String string = args[0];
+		MinecraftServer minecraftServer = MinecraftServer.getServer();
 		
 		switch (string) {
 			case "on": {
 				if (minecraftServer.getPlayerList().getHasWhitelist()) {
-					minecraftServer.getPlayerList().reloadWhitelist();
+					SexyMessage.send(player, "&cБелый список уже включен!");
+					return true;
 				}
 				
 				minecraftServer.getPlayerList().setHasWhitelist(true);
@@ -58,11 +134,12 @@ public class WhiteListCommand extends SexyCommand {
 			
 			case "off": {
 				if (!minecraftServer.getPlayerList().getHasWhitelist()) {
-					minecraftServer.getPlayerList().reloadWhitelist();
+					SexyMessage.send(player, "&aБелый список уже выключен!");
+					return true;
 				}
 				
 				minecraftServer.getPlayerList().setHasWhitelist(false);
-				SexyMessage.send(player, "&сБелый список выключен.");
+				SexyMessage.send(player, "&cБелый список выключен.");
 				return true;
 			}
 			
@@ -102,7 +179,7 @@ public class WhiteListCommand extends SexyCommand {
 				}
 				
 				if (!Bukkit.getWhitelistedPlayers().contains(Bukkit.getOfflinePlayer(args[1]))) {
-					SexyMessage.send(sender, "&cИгрок " + args[1] + " не найден!");
+					SexyMessage.send(player, "&cИгрок " + args[1] + " не найден!");
 					return true;
 				}
 				
@@ -142,6 +219,16 @@ public class WhiteListCommand extends SexyCommand {
 			.collect(Collectors.toList()));
 		}
 		return list;
+	}
+	
+	private void sendHelper(CommandSender sender) {
+		SexyMessage.send(sender, "Основные команды:");
+		SexyMessage.send(sender, "&a/whitelist on - &fвключить белый список.");
+		SexyMessage.send(sender, "&a/whitelist off - &fвыключить белый список.");
+		SexyMessage.send(sender, "&a/whitelist list - &fузнать, кто в белом списке.");
+		SexyMessage.send(sender, "&a/whitelist reload &a- &fперезагрузить белый список.");
+		SexyMessage.send(sender, "&a/whitelist add §8[§cИгрок§8] &a- &fдобавить в белый список.");
+		SexyMessage.send(sender, "&a/whitelist remove §8[§cИгрок§8] &a- &fудалить из белого списка.");
 	}
 	
 	private void sendHelper(Player player) {
