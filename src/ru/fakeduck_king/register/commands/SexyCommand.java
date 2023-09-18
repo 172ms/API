@@ -65,7 +65,6 @@ public abstract class SexyCommand implements CommandExecutor {
 		}
 		
 		this.getCommandMap().register("", reflectCommand);
-		
 		reflectCommand.setExecutor(this);
 	}
 	
@@ -73,9 +72,11 @@ public abstract class SexyCommand implements CommandExecutor {
 		if (SexyCommand.commandMap == null) {
 			try {
 				Field field = Bukkit.getServer().getClass().getDeclaredField("commandMap");
+				
 				field.setAccessible(true);
 				
 				SexyCommand.commandMap = (CommandMap)field.get(Bukkit.getServer());
+				
 				return this.getCommandMap();
 			}
 			catch (Exception e) {

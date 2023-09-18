@@ -10,7 +10,9 @@ public class SexyTPS {
 			Class<?> nmsClass = Class.forName("net.minecraft.server." + version + ".MinecraftServer");
 			Object minecraftServer = nmsClass.getMethod("getServer").invoke(null);
 			Field recentTPSField = minecraftServer.getClass().getField("recentTps");
+			
 			double[] recentTPS = (double[])recentTPSField.get(minecraftServer);
+			
 			return SexyTPS.format(recentTPS[0]);
 		}
 		catch (Exception e) {
@@ -33,6 +35,7 @@ public class SexyTPS {
 		}
 		
 		double formattedTPS = Math.min(Math.round(tps * 100.D) / 100.D, 20.D);
+		
 		return color + formattedTPS;
 	}
 }

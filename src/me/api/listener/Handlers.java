@@ -2,7 +2,6 @@ package me.api.listener;
 
 import ru.fakeduck_king.register.listeners.*;
 import ru.fakeduck_king.utils.player.*;
-import org.bukkit.event.inventory.*;
 import ru.fakeduck_king.messages.*;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.player.*;
@@ -90,52 +89,8 @@ public class Handlers extends SexyEvent {
 	}
 	
 	@EventHandler
-	public void onEntityDamage(EntityDamageEvent event) {
-		if (!ConfigManager.getConfigManager().getConfig().getBoolean("fallDamage")) {
-			if (event.getCause() == EntityDamageEvent.DamageCause.FALL) {
-				event.setCancelled(true);
-			}
-		}
-	}
-	
-	@EventHandler
-	public void onFoodLevelChange(FoodLevelChangeEvent event) {
-		if (!ConfigManager.getConfigManager().getConfig().getBoolean("foodLevelChange")) {
-			event.setCancelled(true);
-		}
-	}
-	
-	@EventHandler
 	public void onPlayerDeath(PlayerDeathEvent event) {
 		event.setDeathMessage(null);
-	}
-	
-	@EventHandler
-	public void onPlayerDropItem(PlayerDropItemEvent event) {
-		Player player = event.getPlayer();
-		
-		if (player.hasPermission("fluxmber.admin")) {
-			return;
-		}
-		
-		if (!ConfigManager.getConfigManager().getConfig().getBoolean("dropItem")) {
-			event.setCancelled(true);
-		}
-	}
-	
-	@EventHandler
-	public void onInventoryClick(InventoryClickEvent event) {
-		Player player = (Player)event.getWhoClicked();
-		
-		if (player.hasPermission("fluxmber.admin")) {
-			return;
-		}
-		
-		if (!ConfigManager.getConfigManager().getConfig().getBoolean("changeInventory")) {
-			if (event.getWhoClicked() != null) {
-				event.setCancelled(true);
-			}
-		}
 	}
 	
 	@EventHandler
@@ -172,18 +127,5 @@ public class Handlers extends SexyEvent {
 		
 		playerAPI.setLastJoin(new Date());
 		DatabaseManager.getDatabaseManager().save(playerAPI);
-	}
-	
-	@EventHandler
-	public void onPlayerSwapHandItems(PlayerSwapHandItemsEvent event) {
-		Player player = event.getPlayer();
-		
-		if (player.hasPermission("fluxmber.admin")) {
-			return;
-		}
-		
-		if (!ConfigManager.getConfigManager().getConfig().getBoolean("changeInventory")) {
-			event.setCancelled(true);
-		}
 	}
 }

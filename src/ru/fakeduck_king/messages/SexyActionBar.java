@@ -13,6 +13,7 @@ public class SexyActionBar {
 		UUID UUID = player.getUniqueId();
 		IChatBaseComponent iChatBaseComponent = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + ChatColor.translateAlternateColorCodes('&', message) + "\"}");
 		PacketPlayOutChat packetPlayOutChat = new PacketPlayOutChat(iChatBaseComponent, ChatMessageType.GAME_INFO, UUID);
+		
 		((CraftPlayer)player).getHandle().playerConnection.sendPacket(packetPlayOutChat);
 	}
 }

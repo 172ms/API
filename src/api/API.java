@@ -61,6 +61,7 @@ public class API extends JavaPlugin {
 	private void registerListeners() {
 		new DonateListener(getInstance());
 		
+		new Cancelled(getInstance());
 		new Handlers(getInstance());
 		
 		new HandlersPvP(getInstance());

@@ -16,6 +16,7 @@ public class Format {
 			}
 			
 			DecimalFormat decimalFormat = new DecimalFormat("#.###");
+			
 			return String.format("%s%s", decimalFormat.format(value).replace(',', '.'), array[index]);
 		}
 		catch (Exception e) {
@@ -36,6 +37,7 @@ public class Format {
 		}
 		
 		DecimalFormat decimalFormat = new DecimalFormat(stringBuilder.toString());
+		
 		return Float.valueOf(decimalFormat.format(amount).replace(",", "."));
 	}
 	

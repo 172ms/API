@@ -28,6 +28,7 @@ public class PlayerCooldown {
 	
 	public void set(Player player, int seconds) {
 		double delay = System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(seconds);
+		
 		this.time.put(player.getUniqueId(), delay);
 	}
 }

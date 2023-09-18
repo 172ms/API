@@ -20,6 +20,7 @@ public class SexyMessage {
 			public void run() {
 				if (i >= list.size()) {
 					this.cancel();
+					
 					if (PlayerSet.getPlayerSet().has(player)) {
 						PlayerSet.getPlayerSet().remove(player);
 					}
