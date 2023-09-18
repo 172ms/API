@@ -30,10 +30,9 @@ public class FriendRequest {
 	}
 	
 	public static void addFriendRequest(Player player, Player receiver) {
-	    boolean isRequest = FriendRequest.friendRequests.stream()
-	    	.anyMatch(friendRequest ->
-	    	(friendRequest.getPlayer().equals(player.getName()) && friendRequest.getReceiver().equals(receiver.getName())) ||
-	    	(friendRequest.getPlayer().equals(receiver.getName()) && friendRequest.getReceiver().equals(player.getName()))
+	    boolean isRequest = FriendRequest.friendRequests.stream().anyMatch(friendRequest ->
+	    	(friendRequest.getPlayer().equals(player.getName()) && friendRequest.getReceiver().equals(receiver.getName())) 
+	    	|| (friendRequest.getPlayer().equals(receiver.getName()) && friendRequest.getReceiver().equals(player.getName()))
 	    );
 	    
 	    if (isRequest) {
