@@ -37,7 +37,7 @@ public class HelpCommand extends SexyCommand {
 		
 		Player player = (Player)sender;
 		
-		if (!PlayerSet.getPlayerSet().has(player)) {
+		if (!PlayerSet.getPlayerSet().get(player)) {
 			PlayerSet.getPlayerSet().add(player);
 			
 			String[] messages = {

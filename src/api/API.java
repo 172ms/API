@@ -104,6 +104,7 @@ public class API extends JavaPlugin {
 		
 		SortDonation.setup();
 		
+		new AlwaysNight().runTaskTimer(this, 0L, 1000L);
 		new TablistTag().runTaskTimer(this, 0L, 20L);
 		
 		PlayerCooldown.getPlayerCooldown().setup();

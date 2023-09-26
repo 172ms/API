@@ -1,3 +1,5 @@
+alwaysNight: true
+
 changeInventory: true
 
 chat-globalSyntax: '%player% > %message%'
@@ -11,9 +13,10 @@ donatorsEnabled: true
 dropItem: true
 
 fallDamage: true
-foodLevelChange: true
 
 oldPvP: true
+
+changeWeather: true
 
 tablistTag-header: '&fОнлайн игроков: &a%online% &fиз &a%onlineMAX%'
 tablistTag-footer: '&e&lFLUXMBER.RU'

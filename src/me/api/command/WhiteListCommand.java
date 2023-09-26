@@ -1,7 +1,6 @@
 package me.api.command;
 
 import ru.fakeduck_king.register.commands.*;
-import net.minecraft.server.v1_16_R3.*;
 import com.google.common.collect.*;
 import ru.fakeduck_king.messages.*;
 import org.bukkit.command.*;
@@ -29,45 +28,49 @@ public class WhiteListCommand extends SexyCommand {
 			}
 			
 			String string = args[0];
-			MinecraftServer minecraftServer = MinecraftServer.getServer();
 			
 			switch (string) {
 				case "on": {
-					if (minecraftServer.getPlayerList().getHasWhitelist()) {
+					if (Bukkit.hasWhitelist()) {
 						SexyMessage.send(sender, "&cБелый список уже включен!");
 						return true;
 					}
 					
-					minecraftServer.getPlayerList().setHasWhitelist(true);
+					Bukkit.setWhitelist(true);
 					SexyMessage.send(sender, "&aБелый список включен.");
 					return true;
 				}
 				
 				case "off": {
-					if (!minecraftServer.getPlayerList().getHasWhitelist()) {
+					if (!Bukkit.hasWhitelist()) {
 						SexyMessage.send(sender, "&aБелый список уже выключен!");
 						return true;
 					}
 					
-					minecraftServer.getPlayerList().setHasWhitelist(false);
+					Bukkit.setWhitelist(false);
 					SexyMessage.send(sender, "&cБелый список выключен.");
 					return true;
 				}
 				
 				case "list": {
-					String[] getWhitelisted = minecraftServer.getPlayerList().getWhitelisted();
+					Set<OfflinePlayer> whitelistedPlayers = Bukkit.getWhitelistedPlayers();
 					
-					if (getWhitelisted.length == 0) {
+					if (whitelistedPlayers.isEmpty()) {
 						SexyMessage.send(sender, "&cБелый список пуст!");
 					}
 					else {
-						SexyMessage.send(sender, "В белом списке &a" + getWhitelisted.length + " &fигроков: &a" + String.join(", ", getWhitelisted) + ".");
+						String playerList = whitelistedPlayers.stream()
+						.map(OfflinePlayer::getName)
+						.sorted()
+						.collect(Collectors.joining(", "));
+						
+						SexyMessage.send(sender, "В белом списке &a" + whitelistedPlayers.size() + " &fигроков: &a" + playerList + ".");
 					}
 					return true;
 				}
 				
 				case "reload": {
-					minecraftServer.getPlayerList().reloadWhitelist();
+					Bukkit.reloadWhitelist();
 					SexyMessage.send(sender, "&aБелый список перезагружен.");
 					return true;
 				}
@@ -118,45 +121,49 @@ public class WhiteListCommand extends SexyCommand {
 		}
 		
 		String string = args[0];
-		MinecraftServer minecraftServer = MinecraftServer.getServer();
 		
 		switch (string) {
 			case "on": {
-				if (minecraftServer.getPlayerList().getHasWhitelist()) {
+				if (Bukkit.hasWhitelist()) {
 					SexyMessage.send(player, "&cБелый список уже включен!");
 					return true;
 				}
 				
-				minecraftServer.getPlayerList().setHasWhitelist(true);
+				Bukkit.setWhitelist(true);
 				SexyMessage.send(player, "&aБелый список включен.");
 				return true;
 			}
 			
 			case "off": {
-				if (!minecraftServer.getPlayerList().getHasWhitelist()) {
+				if (!Bukkit.hasWhitelist()) {
 					SexyMessage.send(player, "&aБелый список уже выключен!");
 					return true;
 				}
 				
-				minecraftServer.getPlayerList().setHasWhitelist(false);
+				Bukkit.setWhitelist(false);
 				SexyMessage.send(player, "&cБелый список выключен.");
 				return true;
 			}
 			
 			case "list": {
-				String[] getWhitelisted = minecraftServer.getPlayerList().getWhitelisted();
+				Set<OfflinePlayer> whitelistedPlayers = Bukkit.getWhitelistedPlayers();
 				
-				if (getWhitelisted.length == 0) {
-					SexyMessage.send(player, "&cБелый список пуст!");
+				if (whitelistedPlayers.isEmpty()) {
+					SexyMessage.send(sender, "&cБелый список пуст!");
 				}
 				else {
-					SexyMessage.send(player, "В белом списке &a" + getWhitelisted.length + " &fигроков: &a" + String.join(", ", getWhitelisted) + ".");
+					String playerList = whitelistedPlayers.stream()
+					.map(OfflinePlayer::getName)
+					.sorted()
+					.collect(Collectors.joining(", "));
+					
+					SexyMessage.send(player, "В белом списке &a" + whitelistedPlayers.size() + " &fигроков: &a" + playerList + ".");
 				}
 				return true;
 			}
 			
 			case "reload": {
-				minecraftServer.getPlayerList().reloadWhitelist();
+				Bukkit.reloadWhitelist();
 				SexyMessage.send(player, "&aБелый список перезагружен.");
 				return true;
 			}

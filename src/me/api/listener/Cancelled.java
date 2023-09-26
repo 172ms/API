@@ -2,6 +2,7 @@ package me.api.listener;
 
 import ru.fakeduck_king.register.listeners.*;
 import org.bukkit.event.inventory.*;
+import org.bukkit.event.weather.*;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.player.*;
 import me.api.configuration.*;
@@ -21,13 +22,6 @@ public class Cancelled extends SexyEvent {
 			if (event.getCause() == EntityDamageEvent.DamageCause.FALL) {
 				event.setCancelled(true);
 			}
-		}
-	}
-	
-	@EventHandler
-	public void onFoodLevelChange(FoodLevelChangeEvent event) {
-		if (!ConfigManager.getConfigManager().getConfig().getBoolean("foodLevelChange")) {
-			event.setCancelled(true);
 		}
 	}
 	
@@ -71,4 +65,11 @@ public class Cancelled extends SexyEvent {
 			event.setCancelled(true);
 		}
 	}
+	
+    @EventHandler
+    public void onWeatherChange(WeatherChangeEvent event) {
+    	if (ConfigManager.getConfigManager().getConfig().getBoolean("changeWeather")) {
+	        event.setCancelled(true);
+    	}
+    }
 }

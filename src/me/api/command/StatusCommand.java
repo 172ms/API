@@ -44,7 +44,7 @@ public class StatusCommand extends SexyCommand {
 			return true;
 		}
 		
-		if (!PlayerSet.getPlayerSet().has(player)) {
+		if (!PlayerSet.getPlayerSet().get(player)) {
 			PlayerSet.getPlayerSet().add(player);
 			
 			String[] messages = {

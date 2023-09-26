@@ -6,7 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/172ms/Desktop/PRISON/SERVER/plugins/PermissionsEx.jar"/>
 	<classpathentry kind="lib" path="C:/Users/172ms/Desktop/PRISON/SERVER/server.jar"/>
+	<classpathentry kind="lib" path="C:/Users/172ms/Desktop/PRISON/SERVER/plugins/PermissionsEx.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

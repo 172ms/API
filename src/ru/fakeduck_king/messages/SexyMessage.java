@@ -7,27 +7,28 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.ChatColor;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 public class SexyMessage {
 	public static void send(Plugin plugin, Player player, String[] messages) {
 		List<String> list = Arrays.asList(messages);
+		Iterator<String> iterator = list.iterator();
 		
 		new BukkitRunnable() {
-			int i = 0;
-			
 			@Override
 			public void run() {
-				if (i >= list.size()) {
+				if (!iterator.hasNext()) {
 					this.cancel();
 					
-					if (PlayerSet.getPlayerSet().has(player)) {
+					if (PlayerSet.getPlayerSet().get(player)) {
 						PlayerSet.getPlayerSet().remove(player);
 					}
 					return;
 				}
-				SexyMessage.send(player, list.get(i));
-				i++;
+				String message = iterator.next();
+				
+				SexyMessage.send(player, message);
 			}
 		}.runTaskTimer(plugin, 0L, 20L);
 	}
