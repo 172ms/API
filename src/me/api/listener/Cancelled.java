@@ -1,11 +1,11 @@
 package me.api.listener;
 
 import ru.fakeduck_king.register.listeners.*;
+import me.api.configuration.settings.*;
 import org.bukkit.event.inventory.*;
 import org.bukkit.event.weather.*;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.player.*;
-import me.api.configuration.*;
 import org.bukkit.entity.*;
 import org.bukkit.plugin.*;
 import org.bukkit.event.*;
@@ -18,7 +18,7 @@ public class Cancelled extends SexyEvent {
 	
 	@EventHandler
 	public void onEntityDamage(EntityDamageEvent event) {
-		if (!ConfigManager.getConfigManager().getConfig().getBoolean("fallDamage")) {
+		if (!ConfigSettings.getConfigSettings().isFallDamage()) {
 			if (event.getCause() == EntityDamageEvent.DamageCause.FALL) {
 				event.setCancelled(true);
 			}
@@ -33,7 +33,7 @@ public class Cancelled extends SexyEvent {
 			return;
 		}
 		
-		if (!ConfigManager.getConfigManager().getConfig().getBoolean("dropItem")) {
+		if (!ConfigSettings.getConfigSettings().isDropItem()) {
 			event.setCancelled(true);
 		}
 	}
@@ -46,7 +46,7 @@ public class Cancelled extends SexyEvent {
 			return;
 		}
 		
-		if (!ConfigManager.getConfigManager().getConfig().getBoolean("changeInventory")) {
+		if (!ConfigSettings.getConfigSettings().isChangeInventory()) {
 			if (event.getWhoClicked() != null) {
 				event.setCancelled(true);
 			}
@@ -61,15 +61,15 @@ public class Cancelled extends SexyEvent {
 			return;
 		}
 		
-		if (!ConfigManager.getConfigManager().getConfig().getBoolean("changeInventory")) {
+		if (!ConfigSettings.getConfigSettings().isChangeInventory()) {
 			event.setCancelled(true);
 		}
 	}
 	
-    @EventHandler
-    public void onWeatherChange(WeatherChangeEvent event) {
-    	if (ConfigManager.getConfigManager().getConfig().getBoolean("changeWeather")) {
-	        event.setCancelled(true);
-    	}
-    }
+	@EventHandler
+	public void onWeatherChange(WeatherChangeEvent event) {
+		if (!ConfigSettings.getConfigSettings().isChangeWeather()) {
+			event.setCancelled(true);
+		}
+	}
 }

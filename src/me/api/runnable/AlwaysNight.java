@@ -1,6 +1,6 @@
 package me.api.runnable;
 
-import me.api.configuration.*;
+import me.api.configuration.settings.*;
 import org.bukkit.scheduler.*;
 import org.bukkit.*;
 
@@ -8,10 +8,10 @@ public class AlwaysNight extends BukkitRunnable {
 	
 	@Override
 	public void run() {
-		if (!ConfigManager.getConfigManager().getConfig().getBoolean("alwaysNight")) {
+		if (ConfigSettings.getConfigSettings().isAlwaysNight()) {
 			if (!Bukkit.getOnlinePlayers().isEmpty()) {
-				Bukkit.getWorlds().forEach(world -> {
-					world.setTime(3000L);
+				Bukkit.getOnlinePlayers().forEach(player -> {
+					player.getWorld().setTime(18000L);
 				});
 			}
 		}

@@ -2,10 +2,10 @@ package me.api.configuration;
 
 import org.bukkit.configuration.file.*;
 import ru.fakeduck_king.messages.*;
-import org.bukkit.configuration.*;
 import org.bukkit.*;
 import java.io.*;
 import api.*;
+import me.api.configuration.settings.ConfigSettings;
 
 public class ConfigManager {
 	private static final ConfigManager configManager = new ConfigManager();
@@ -33,9 +33,10 @@ public class ConfigManager {
 		
 		try {
 			this.config.load(this.configFile);
-			Bukkit.getServer().getConsoleSender().sendMessage(Prefix.SUCCESSFULLY + "ALL CONFIGS LOAD");
+			
+			Bukkit.getServer().getConsoleSender().sendMessage(Prefix.SUCCESSFULLY + "ALL CONFIGS ARE LOADED");
 		}
-		catch (IOException | InvalidConfigurationException e) {
+		catch (Exception e) {
 			Bukkit.getServer().getConsoleSender().sendMessage(Prefix.ERROR + "ALL CONFIGS COULD NOT BE LOAD");
 		}
 	}
@@ -44,12 +45,19 @@ public class ConfigManager {
 		try {
 			this.config.save(this.configFile);
 		}
-		catch (IOException e) {
+		catch (Exception e) {
 			Bukkit.getServer().getConsoleSender().sendMessage(Prefix.ERROR + "ALL CONFIGS COULD NOT BE SAVED");
 		}
 	}
 	
 	public void reload() {
-		this.config = YamlConfiguration.loadConfiguration(this.configFile);
+		try {
+			this.config = YamlConfiguration.loadConfiguration(this.configFile);
+			
+			ConfigSettings.getConfigSettings().setup();
+		}
+		catch (Exception e) {
+			Bukkit.getServer().getConsoleSender().sendMessage(Prefix.ERROR + "ALL CONFIGS COULD NOT BE RELOAD");
+		}
 	}
 }

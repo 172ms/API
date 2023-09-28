@@ -1,12 +1,12 @@
 package me.api.listener;
 
 import ru.fakeduck_king.register.listeners.*;
+import me.api.configuration.settings.*;
 import ru.fakeduck_king.utils.player.*;
 import ru.fakeduck_king.messages.*;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.player.*;
 import ru.fakeduck_king.utils.*;
-import me.api.configuration.*;
 import org.bukkit.entity.*;
 import org.bukkit.plugin.*;
 import org.bukkit.event.*;
@@ -42,16 +42,16 @@ public class Handlers extends SexyEvent {
 		
 		Set<Player> notify = SexyAllPlayers.get();
 		
-		String chatGlobalSyntax = ConfigManager.getConfigManager().getConfig().getString("chat-globalSyntax")
+		String chatGlobalSyntax = ConfigSettings.getConfigSettings().getGlobalChatSyntax()
 		.replace("%player%", player.getDisplayName())
 		.replace("%message%", SexyColorize.colorize(player, message.substring(1).trim()));
 		
-		String chatLocalSyntax = ConfigManager.getConfigManager().getConfig().getString("chat-localSyntax")
+		String chatLocalSyntax = ConfigSettings.getConfigSettings().getLocalChatSyntax()
 		.replace("%player%", player.getDisplayName())
 		.replace("%message%", SexyColorize.colorize(player, message));
 		
-		String globalMessage = ChatColor.translateAlternateColorCodes('&', ConfigManager.getConfigManager().getConfig().getString("chat-globalMessage"));
-		String localMessage = ChatColor.translateAlternateColorCodes('&', ConfigManager.getConfigManager().getConfig().getString("chat-localMessage"));
+		String globalMessage = ChatColor.translateAlternateColorCodes('&', ConfigSettings.getConfigSettings().getGlobalChatMessage());
+		String localMessage = ChatColor.translateAlternateColorCodes('&', ConfigSettings.getConfigSettings().getLocalChatMessage());
 		
 		if (message.startsWith("!") && message.substring(1).trim().isEmpty()) {
 			SexyMessage.send(player, "&cВведите сообщение!");
@@ -70,7 +70,7 @@ public class Handlers extends SexyEvent {
 		
 		if (!(player.hasPermission("fluxmber.chatbypass"))) {
 			if (PlayerCooldown.getPlayerCooldown().has(player)) {
-				PlayerCooldown.getPlayerCooldown().set(player, ConfigManager.getConfigManager().getConfig().getInt("chat-cooldown"));
+				PlayerCooldown.getPlayerCooldown().set(player, ConfigSettings.getConfigSettings().getChatCooldown());
 			}
 			else {
 				SexyMessage.send(player, "Подождите &c" + PlayerCooldown.getPlayerCooldown().get(player) + "с &fперед отправкой сообщение.");

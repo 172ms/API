@@ -1,5 +1,6 @@
 package api;
 
+import me.api.configuration.settings.*;
 import ru.fakeduck_king.utils.player.*;
 import me.api.command.listener.*;
 import me.api.command.friends.*;
@@ -79,6 +80,8 @@ public class API extends JavaPlugin {
 		DatabaseManager.getDatabaseManager().setup();
 		
 		ConfigManager.getConfigManager().setup();
+		
+	    ConfigSettings.getConfigSettings().setup();
 		
 		Bukkit.getServer().getConsoleSender().sendMessage("ANALYSIS"
 		+ "§c\n"

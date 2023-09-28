@@ -1,9 +1,9 @@
 package me.api.listener.oldpvp;
 
 import ru.fakeduck_king.register.listeners.*;
+import me.api.configuration.settings.*;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.player.*;
-import me.api.configuration.*;
 import org.bukkit.attribute.*;
 import org.bukkit.entity.*;
 import org.bukkit.plugin.*;
@@ -26,7 +26,7 @@ public class HandlersPvP extends SexyEvent {
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
 		
-		if (ConfigManager.getConfigManager().getConfig().getBoolean("oldPvP")) {
+		if (ConfigSettings.getConfigSettings().isOldPvP()) {
 			player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(100.D);
 		}
 		else {
@@ -38,7 +38,7 @@ public class HandlersPvP extends SexyEvent {
 	public void onPlayerQuit(PlayerQuitEvent event) {
 		Player player = event.getPlayer();
 		
-		if (ConfigManager.getConfigManager().getConfig().getBoolean("oldPvP")) {
+		if (ConfigSettings.getConfigSettings().isOldPvP()) {
 			player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(100.D);
 		}
 		else {
@@ -50,7 +50,7 @@ public class HandlersPvP extends SexyEvent {
 	
 	@EventHandler
 	public void onEntityRegainHealth(EntityRegainHealthEvent event) {
-		if (ConfigManager.getConfigManager().getConfig().getBoolean("oldPvP")) {
+		if (ConfigSettings.getConfigSettings().isOldPvP()) {
 			if (event.getEntityType() != EntityType.PLAYER || event.getRegainReason() != EntityRegainHealthEvent.RegainReason.SATIATED) {
 				return;
 			}

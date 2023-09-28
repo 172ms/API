@@ -20,7 +20,7 @@ public class APIReloadConfigCommand extends SexyCommand {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (!(sender instanceof Player)) {
-			ConfigManager.getConfigManager().reload();;
+			ConfigManager.getConfigManager().reload();
 			return true;
 		}
 		
@@ -31,7 +31,7 @@ public class APIReloadConfigCommand extends SexyCommand {
 			return true;
 		}
 		
-		ConfigManager.getConfigManager().reload();;
+		ConfigManager.getConfigManager().reload();
 		return true;
 	}
 }
