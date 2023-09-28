@@ -6,7 +6,7 @@ import org.bukkit.*;
 
 public class ConfigSettings {
 	private static final ConfigSettings configSettings = new ConfigSettings();
-	private boolean alwaysNight, changeInventory, donatorsEnabled, dropItem, fallDamage, oldPvP, changeWeather;
+	private boolean alwaysDay, changeInventory, donatorsEnabled, dropItem, fallDamage, oldPvP, changeWeather;
 	private String globalSyntax, localSyntax, globalMessage, localMessage, tablistTagHeader, tablistTagFooter;
 	private int chatCooldown;
 	
@@ -16,7 +16,7 @@ public class ConfigSettings {
 	
 	public void setup() {
 		try {
-			this.alwaysNight = ConfigManager.getConfigManager().getConfig().getBoolean("alwaysNight");
+			this.alwaysDay = ConfigManager.getConfigManager().getConfig().getBoolean("alwaysDay");
 			this.changeInventory = ConfigManager.getConfigManager().getConfig().getBoolean("changeInventory");
 			
 			this.globalSyntax = ConfigManager.getConfigManager().getConfig().getString("chat-globalSyntax");
@@ -41,8 +41,8 @@ public class ConfigSettings {
 		}
 	}
 	
-	public boolean isAlwaysNight() {
-		return this.alwaysNight;
+	public boolean isAlwaysDay() {
+		return this.alwaysDay;
 	}
 	
 	public boolean isChangeInventory() {

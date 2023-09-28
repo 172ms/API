@@ -1,4 +1,4 @@
-alwaysNight: true
+alwaysDay: true
 
 changeInventory: true
 
@@ -23,6 +23,7 @@ tablistTag-footer: '&e&lFLUXMBER.RU'
 tablistTag:
     PREFIX-DEVELOPER: '&8[&bDEV&8]&f '
     PREFIX-ADMIN: '&8[&4&lADMIN&8]&f '
+    PREFIX-YOUTUBE: '&8[&f&lYOUTUBE&8]&f '
     PREFIX-CURATORBUILDER: '&8[&c&lC&f&l.&2&lBUILDER&8]&f '
     PREFIX-BUILDER: '&8[&2&lBUILDER&8]&f '
     PREFIX-CURATORMODERATOR: '&8[&c&lC&f&l.&b&lMODER&8]&f '
@@ -37,6 +38,7 @@ tablistTag:
     PREFIX-DEFAULT: '&f'
     NAME-DEVELOPER: DEVELOPER
     NAME-ADMIN: ADMIN
+    NAME-YOUTUBE: YOUTUBE
     NAME-CURATORBUILDER: CURATORBUILDER
     NAME-BUILDER: BUILDER
     NAME-CURATORMODERATOR: CURATORMODERATOR

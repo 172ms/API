@@ -26,12 +26,14 @@ public class SortDonation {
 		"10",
 		"11",
 		"12",
-		"13"
+		"13",
+		"14"
 	};
 	
 	private static final String[] PREFIXES = { 
 		"DEVELOPER",
 		"ADMIN",
+		"YOUTUBE",
 		"CURATORBUILDER",
 		"BUILDER",
 		"CURATORMODERATOR",
@@ -51,18 +53,19 @@ public class SortDonation {
 	static {
 		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-DEVELOPER"), "0");
 		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-ADMIN"), "1");
-		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-CURATORBUILDER"), "2");
-		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-BUILDER"), "3");
-		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-CURATORMODERATOR"), "4");
-		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-MODERATOR"), "5");
-		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-HELPER"), "6");
-		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-FLUX"), "7");
-		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-DIAMOND"), "8");
-		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-EMERALD"), "9");
-		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-GOLD"), "10");
-		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-IRON"), "11");
-		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-COAL"), "12");
-		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-DEFAULT"), "13");
+		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-YOUTUBE"), "2");
+		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-CURATORBUILDER"), "3");
+		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-BUILDER"), "4");
+		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-CURATORMODERATOR"), "5");
+		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-MODERATOR"), "6");
+		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-HELPER"), "7");
+		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-FLUX"), "8");
+		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-DIAMOND"), "9");
+		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-EMERALD"), "10");
+		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-GOLD"), "11");
+		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-IRON"), "12");
+		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-COAL"), "13");
+		SortDonation.GROUPS.put((ConfigManager.getConfigManager().getConfig()).getString("tablistTag.NAME-DEFAULT"), "14");
 	}
 	
 	public static void setup() {
@@ -77,11 +80,11 @@ public class SortDonation {
 	}
 	
 	public static void unload() {
-		Arrays.stream(SortDonation.TEAM_NAMES).forEach(teamNAME -> SortDonation.scoreboard.getTeam(teamNAME).unregister());
+		Arrays.stream(SortDonation.TEAM_NAMES).forEach(teamName -> SortDonation.scoreboard.getTeam(teamName).unregister());
 	}
 	
 	public static void sort(Player player) {
-		String team = SortDonation.GROUPS.getOrDefault(PermissionsEx.getUser(player).getGroups()[0].getName(), "13");
+		String team = SortDonation.GROUPS.getOrDefault(PermissionsEx.getUser(player).getGroups()[0].getName(), "14");
 		
 		SortDonation.scoreboard.getTeam(team).addPlayer(player);
 		player.setDisplayName(SortDonation.scoreboard.getTeam(team).getPrefix() + player.getName());

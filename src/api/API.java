@@ -81,7 +81,7 @@ public class API extends JavaPlugin {
 		
 		ConfigManager.getConfigManager().setup();
 		
-	    ConfigSettings.getConfigSettings().setup();
+		ConfigSettings.getConfigSettings().setup();
 		
 		Bukkit.getServer().getConsoleSender().sendMessage("ANALYSIS"
 		+ "§c\n"
@@ -107,7 +107,7 @@ public class API extends JavaPlugin {
 		
 		SortDonation.setup();
 		
-		new AlwaysNight().runTaskTimer(this, 0L, 1000L);
+		new AlwaysDay().runTaskTimer(this, 0L, 1000L);
 		new TablistTag().runTaskTimer(this, 0L, 20L);
 		
 		PlayerCooldown.getPlayerCooldown().setup();
@@ -119,15 +119,11 @@ public class API extends JavaPlugin {
 	public void onDisable() {
 		DatabaseManager.getDatabaseManager().closeConnection();
 		
-		if (ConfigManager.getConfigManager().getConfig().getBoolean("oldPvP")) {
-			Bukkit.getOnlinePlayers().forEach(player ->
-				player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(100.D)
-			);
+		if (ConfigSettings.getConfigSettings().isOldPvP()) {
+			Bukkit.getOnlinePlayers().forEach(player -> player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(100.D));
 		}
 		else {
-			Bukkit.getOnlinePlayers().forEach(player ->
-				player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(4.D)
-			);
+			Bukkit.getOnlinePlayers().forEach(player -> player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(4.D));
 		}
 		
 		SortDonation.unload();
