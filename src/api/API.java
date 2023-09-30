@@ -51,7 +51,7 @@ public class API extends JavaPlugin {
 		new WeatherCommand().register();
 		new WhiteListCommand().register();
 		
-		if (ConfigManager.getConfigManager().getConfig().getBoolean("donatorsEnabled")) {
+		if (ConfigSettings.getConfigSettings().isDonators()) {
 			new DonatorsCommand().register();
 			new DonatorsToggleCommand().register();
 		}
@@ -60,12 +60,12 @@ public class API extends JavaPlugin {
 	}
 	
 	private void registerListeners() {
-		new DonateListener(getInstance());
+		new DonateListener(API.getInstance());
 		
-		new Cancelled(getInstance());
-		new Handlers(getInstance());
+		new Cancelled(API.getInstance());
+		new Handlers(API.getInstance());
 		
-		new HandlersPvP(getInstance());
+		new HandlersPvP(API.getInstance());
 		
 		if (ConfigManager.getConfigManager().getConfig().getBoolean("oldPvP")) {
 			Bukkit.getOnlinePlayers().forEach(player -> player.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(100.D));

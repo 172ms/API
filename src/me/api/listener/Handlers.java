@@ -13,9 +13,11 @@ import org.bukkit.event.*;
 import me.api.data.*;
 import org.bukkit.*;
 import java.util.*;
+import api.*;
 
 @SuppressWarnings("deprecation")
 public class Handlers extends SexyEvent {
+	private final Set<String> resourcePack = new HashSet<>();
 	
 	public Handlers(Plugin plugin) {
 		super(plugin);
@@ -127,5 +129,20 @@ public class Handlers extends SexyEvent {
 		
 		playerAPI.setLastJoin(new Date());
 		DatabaseManager.getDatabaseManager().save(playerAPI);
+	}
+	
+	@EventHandler
+	public void onResourcePackStatus(PlayerResourcePackStatusEvent event) {
+		Player player = event.getPlayer();
+		
+		if (event.getStatus() == PlayerResourcePackStatusEvent.Status.SUCCESSFULLY_LOADED) {
+			this.resourcePack.remove(player.getName());
+		}
+		
+		if (event.getStatus() == PlayerResourcePackStatusEvent.Status.DECLINED || event.getStatus() == PlayerResourcePackStatusEvent.Status.FAILED_DOWNLOAD) {
+			this.resourcePack.remove(player.getName());
+			
+			Bukkit.getScheduler().runTaskLater(API.getInstance(), () -> player.kickPlayer("§cТекстуры сервера обязательно"), 20L);
+		}
 	}
 }
