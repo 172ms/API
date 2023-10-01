@@ -6,7 +6,7 @@ import org.bukkit.*;
 
 public class ConfigSettings {
 	private static final ConfigSettings configSettings = new ConfigSettings();
-	private boolean alwaysDay, changeInventory, donatorsEnabled, dropItem, fallDamage, oldPvP, changeWeather;
+	private boolean alwaysDay, changeInventory, changeWeather, donatorsEnabled, dropItem, fallDamage, keepInventory, lobby, oldPvP;
 	private String globalSyntax, localSyntax, globalMessage, localMessage, tablistTagHeader, tablistTagFooter;
 	private int chatCooldown;
 	
@@ -18,6 +18,7 @@ public class ConfigSettings {
 		try {
 			this.alwaysDay = ConfigManager.getConfigManager().getConfig().getBoolean("alwaysDay");
 			this.changeInventory = ConfigManager.getConfigManager().getConfig().getBoolean("changeInventory");
+			this.changeWeather = ConfigManager.getConfigManager().getConfig().getBoolean("changeWeather");
 			
 			this.globalSyntax = ConfigManager.getConfigManager().getConfig().getString("chat-globalSyntax");
 			this.localSyntax = ConfigManager.getConfigManager().getConfig().getString("chat-localSyntax");
@@ -28,8 +29,9 @@ public class ConfigSettings {
 			this.donatorsEnabled = ConfigManager.getConfigManager().getConfig().getBoolean("donatorsEnabled");
 			this.dropItem = ConfigManager.getConfigManager().getConfig().getBoolean("dropItem");
 			this.fallDamage = ConfigManager.getConfigManager().getConfig().getBoolean("fallDamage");
+			this.keepInventory = ConfigManager.getConfigManager().getConfig().getBoolean("keepInventory");
+			this.lobby = ConfigManager.getConfigManager().getConfig().getBoolean("lobby");
 			this.oldPvP = ConfigManager.getConfigManager().getConfig().getBoolean("oldPvP");
-			this.changeWeather = ConfigManager.getConfigManager().getConfig().getBoolean("changeWeather");
 			
 			this.tablistTagHeader = ConfigManager.getConfigManager().getConfig().getString("tablistTag-header");
 			this.tablistTagFooter = ConfigManager.getConfigManager().getConfig().getString("tablistTag-footer");
@@ -47,6 +49,10 @@ public class ConfigSettings {
 	
 	public boolean isChangeInventory() {
 		return this.changeInventory;
+	}
+	
+	public boolean isChangeWeather() {
+		return this.changeWeather;
 	}
 	
 	public String getGlobalChatSyntax() {
@@ -81,12 +87,16 @@ public class ConfigSettings {
 		return this.fallDamage;
 	}
 	
-	public boolean isOldPvP() {
-		return this.oldPvP;
+	public boolean isKeepInventory() {
+		return this.keepInventory;
 	}
 	
-	public boolean isChangeWeather() {
-		return this.changeWeather;
+	public boolean isLobby() {
+		return this.lobby;
+	}
+	
+	public boolean isOldPvP() {
+		return this.oldPvP;
 	}
 	
 	public String getTablistTagHeader() {

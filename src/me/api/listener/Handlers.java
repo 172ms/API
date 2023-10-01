@@ -93,6 +93,11 @@ public class Handlers extends SexyEvent {
 	@EventHandler
 	public void onPlayerDeath(PlayerDeathEvent event) {
 		event.setDeathMessage(null);
+		
+		if (ConfigSettings.getConfigSettings().isKeepInventory()) {
+			event.setKeepInventory(true);
+            event.getDrops().clear();
+		}
 	}
 	
 	@EventHandler
@@ -112,6 +117,16 @@ public class Handlers extends SexyEvent {
 		}
 		
 		DatabaseManager.getDatabaseManager().save(playerAPI);
+		
+		if (ConfigSettings.getConfigSettings().isLobby()) {
+			player.getInventory().clear();
+			
+			player.getInventory().setItem(0, CustomItem.create(Material.COMPASS, "&aВыбор сервера"));
+			
+			player.getInventory().setItem(1, CustomItem.create(Material.CLOCK, "&aСкрыть игроков"));
+			
+			player.getInventory().setItem(8, CustomItem.create(Material.NETHER_STAR, "&aНастройки"));
+		}
 	}
 	
 	@EventHandler

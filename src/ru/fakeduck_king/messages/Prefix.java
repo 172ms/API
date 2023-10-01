@@ -15,7 +15,7 @@ public class Prefix {
 	public static final String GOLD = "§6§lGOLD";
 	public static final String EMERALD = "§a§lEMERALD";
 	public static final String DIAMOND = "§b§lDIAMOND";
-	public static final String FLUX = "§e§lFLUX";
+	public static final String FLUX = "§8§lFLUX";
 	
 	//DONATE COST
 	public static final int COAL_COST = 59;

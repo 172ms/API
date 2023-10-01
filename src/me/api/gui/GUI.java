@@ -247,6 +247,8 @@ public class GUI {
 			inventory.setItem(i, CustomItem.create(Material.BLACK_STAINED_GLASS_PANE, " "));
 		}
 		
+		inventory.setItem(10, CustomItem.create(Material.IRON_SHOVEL, "&aSPLEEF"));
+		
 		inventory.setItem(13, CustomItem.create(Material.IRON_PICKAXE, "&aPRISON NORMAL"));
 		
 		inventory.setItem(36, CustomItem.create(Material.PAPER, "&cВернуться назад"));
@@ -263,6 +265,8 @@ public class GUI {
 		for (int i = 0; i < inventory.getSize(); ++i) {
 			inventory.setItem(i, CustomItem.create(Material.BLACK_STAINED_GLASS_PANE, " "));
 		}
+
+		inventory.setItem(10, CustomItem.create(Material.IRON_SHOVEL, "&aSPLEEF"));
 		
 		inventory.setItem(13, CustomItem.create(Material.IRON_PICKAXE, "&aPRISON NORMAL"));
 		
@@ -281,6 +285,8 @@ public class GUI {
 			inventory.setItem(i, CustomItem.create(Material.BLACK_STAINED_GLASS_PANE, " "));
 		}
 		
+		inventory.setItem(10, CustomItem.create(Material.IRON_SHOVEL, "&aSPLEEF"));
+		
 		inventory.setItem(13, CustomItem.create(Material.IRON_PICKAXE, "&aPRISON NORMAL"));
 		
 		inventory.setItem(36, CustomItem.create(Material.PAPER, "&cВернуться назад"));
@@ -297,6 +303,8 @@ public class GUI {
 		for (int i = 0; i < inventory.getSize(); ++i) {
 			inventory.setItem(i, CustomItem.create(Material.BLACK_STAINED_GLASS_PANE, " "));
 		}
+		
+		inventory.setItem(10, CustomItem.create(Material.IRON_SHOVEL, "&aSPLEEF"));
 		
 		inventory.setItem(13, CustomItem.create(Material.IRON_PICKAXE, "&aPRISON NORMAL"));
 		
@@ -315,6 +323,8 @@ public class GUI {
 			inventory.setItem(i, CustomItem.create(Material.BLACK_STAINED_GLASS_PANE, " "));
 		}
 		
+		inventory.setItem(10, CustomItem.create(Material.IRON_SHOVEL, "&aSPLEEF"));
+		
 		inventory.setItem(13, CustomItem.create(Material.IRON_PICKAXE, "&aPRISON NORMAL"));
 		
 		inventory.setItem(36, CustomItem.create(Material.PAPER, "&cВернуться назад"));
@@ -331,6 +341,8 @@ public class GUI {
 		for (int i = 0; i < inventory.getSize(); ++i) {
 			inventory.setItem(i, CustomItem.create(Material.BLACK_STAINED_GLASS_PANE, " "));
 		}
+		
+		inventory.setItem(10, CustomItem.create(Material.IRON_SHOVEL, "&aSPLEEF"));
 		
 		inventory.setItem(13, CustomItem.create(Material.IRON_PICKAXE, "&aPRISON NORMAL"));
 		

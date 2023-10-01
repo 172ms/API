@@ -5,6 +5,7 @@ import ru.fakeduck_king.messages.*;
 public enum ValidGroup {
 	DEVELOPER(0),
 	ADMIN(0),
+	YOUTUBE(0),
 	CURATORBUILDER(0),
 	BUILDER(0),
 	CURATORMODERATOR(0),
