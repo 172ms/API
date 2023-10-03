@@ -193,16 +193,15 @@ public class GiveRUBCommand extends SexyCommand {
 				.filter(name -> name.startsWith(args[0]))
 				.collect(Collectors.toList()));
 			}
-			
 			else if (args.length == 2) {
 				List<String> available = Arrays.asList("add", "remove",  "set");
+				
 				for (String key : available) {
 					if (key.startsWith(args[1])) {
 						list.add(key);
 					}
 				}
 			}
-			
 			else if (args.length == 3) {
 				list = Collections.singletonList("сумма");
 			}

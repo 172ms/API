@@ -48,13 +48,7 @@ public class DatabaseManager {
 			preparedStatement.setString(4, playerAPI.getFirstJoin());
 			preparedStatement.setBoolean(5, playerAPI.getMessageStaff());
 			preparedStatement.setBoolean(6, playerAPI.getMessageDonators());
-			
-			if (playerAPI.getFriends().isEmpty()) {
-				preparedStatement.setNull(7, Types.VARCHAR);
-			}
-			else {
-				preparedStatement.setString(7, String.join(",", playerAPI.getFriends()));
-			}
+			preparedStatement.setString(7, playerAPI.getFriends().isEmpty() ? null : String.join(",", playerAPI.getFriends()));
 			
 			preparedStatement.executeUpdate();
 		}
@@ -65,7 +59,7 @@ public class DatabaseManager {
 		PlayerAPI playerAPI = null;
 		try
 		(
-				PreparedStatement preparedStatement = this.getConnection().prepareStatement("SELECT * FROM playerAPI WHERE UUID = ?");
+			PreparedStatement preparedStatement = this.getConnection().prepareStatement("SELECT * FROM playerAPI WHERE UUID = ?");
 		)
 		{
 			preparedStatement.setString(1, name);
@@ -73,11 +67,7 @@ public class DatabaseManager {
 			
 			if (resultSet.next()) {
 				String resultSetFriends = resultSet.getString("friends");
-				List<String> friends = new ArrayList<>();
-				
-				if (resultSetFriends != null && !resultSetFriends.isEmpty()) {
-					friends = new ArrayList<>(Arrays.asList(resultSetFriends.split(",")));
-				}
+				List<String> friends = resultSetFriends != null && !resultSetFriends.isEmpty() ? new ArrayList<>(Arrays.asList(resultSetFriends.split(","))) : new ArrayList<>();
 				
 				playerAPI = new PlayerAPI(
 					resultSet.getString("UUID"),
@@ -97,7 +87,7 @@ public class DatabaseManager {
 	public void save(PlayerAPI playerAPI) {
 		try
 		(
-				PreparedStatement preparedStatement = this.getConnection().prepareStatement("UPDATE playerAPI SET RUB = ?, lastJoin = ?, firstJoin = ?, messageStaff = ?, messageDonators = ?, friends = ? WHERE UUID = ?")
+			PreparedStatement preparedStatement = this.getConnection().prepareStatement("UPDATE playerAPI SET RUB = ?, lastJoin = ?, firstJoin = ?, messageStaff = ?, messageDonators = ?, friends = ? WHERE UUID = ?")
 		)
 		{
 			preparedStatement.setInt(1, playerAPI.getRUB());
@@ -105,13 +95,7 @@ public class DatabaseManager {
 			preparedStatement.setString(3, playerAPI.getFirstJoin());
 			preparedStatement.setBoolean(4, playerAPI.getMessageStaff());
 			preparedStatement.setBoolean(5, playerAPI.getMessageDonators());
-			
-			if (playerAPI.getFriends().isEmpty()) {
-				preparedStatement.setNull(6, Types.VARCHAR);
-			}
-			else {
-				preparedStatement.setString(6, String.join(",", playerAPI.getFriends()));
-			}
+			preparedStatement.setString(6, playerAPI.getFriends().isEmpty() ? null : String.join(",", playerAPI.getFriends()));
 			
 			preparedStatement.setString(7, playerAPI.getName());
 			preparedStatement.executeUpdate();

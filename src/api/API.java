@@ -18,8 +18,6 @@ import org.bukkit.*;
 
 public class API extends JavaPlugin {
 	private void registerCommands() {
-		new APIReloadConfigCommand().register();
-		
 		new BroadcastCommand().register();
 		new ClearChatCommand().register();
 		new ClearCommand().register();

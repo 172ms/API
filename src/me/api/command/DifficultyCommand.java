@@ -152,6 +152,7 @@ public class DifficultyCommand extends SexyCommand {
 		if (args.length == 1) {
 			if (sender.hasPermission("fluxmber.admin")) {
 				List<String> available = Arrays.asList("peaceful", "easy", "normal", "hard");
+				
 				for (String key : available) {
 					if (key.startsWith(args[0])) {
 						list.add(key);

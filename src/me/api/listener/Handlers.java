@@ -146,18 +146,18 @@ public class Handlers extends SexyEvent {
 		DatabaseManager.getDatabaseManager().save(playerAPI);
 	}
 	
-	@EventHandler
-	public void onResourcePackStatus(PlayerResourcePackStatusEvent event) {
-		Player player = event.getPlayer();
-		
-		if (event.getStatus() == PlayerResourcePackStatusEvent.Status.SUCCESSFULLY_LOADED) {
-			this.resourcePack.remove(player.getName());
-		}
-		
-		if (event.getStatus() == PlayerResourcePackStatusEvent.Status.DECLINED || event.getStatus() == PlayerResourcePackStatusEvent.Status.FAILED_DOWNLOAD) {
-			this.resourcePack.remove(player.getName());
-			
-			Bukkit.getScheduler().runTaskLater(API.getInstance(), () -> player.kickPlayer("§cТекстуры сервера обязательно"), 20L);
-		}
-	}
+//	@EventHandler
+//	public void onResourcePackStatus(PlayerResourcePackStatusEvent event) {
+//		Player player = event.getPlayer();
+//		
+//		if (event.getStatus() == PlayerResourcePackStatusEvent.Status.SUCCESSFULLY_LOADED) {
+//			this.resourcePack.remove(player.getName());
+//		}
+//		
+//		if (event.getStatus() == PlayerResourcePackStatusEvent.Status.DECLINED || event.getStatus() == PlayerResourcePackStatusEvent.Status.FAILED_DOWNLOAD) {
+//			this.resourcePack.remove(player.getName());
+//			
+//			Bukkit.getScheduler().runTaskLater(API.getInstance(), () -> player.kickPlayer("§cТекстуры сервера обязательно"), 20L);
+//		}
+//	}
 }

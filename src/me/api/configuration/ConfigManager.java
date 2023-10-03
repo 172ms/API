@@ -5,7 +5,6 @@ import ru.fakeduck_king.messages.*;
 import org.bukkit.*;
 import java.io.*;
 import api.*;
-import me.api.configuration.settings.ConfigSettings;
 
 public class ConfigManager {
 	private static final ConfigManager configManager = new ConfigManager();
@@ -22,7 +21,7 @@ public class ConfigManager {
 	}
 	
 	public void setup() {
-		this.configFile = new File(API.getInstance().getDataFolder(), "config.yml");
+		this.configFile = new File(plugin.getDataFolder(), "config.yml");
 		
 		if (!this.configFile.exists()) {
 			this.configFile.getParentFile().mkdirs();
@@ -47,17 +46,6 @@ public class ConfigManager {
 		}
 		catch (Exception e) {
 			Bukkit.getServer().getConsoleSender().sendMessage(Prefix.ERROR + "ALL CONFIGS COULD NOT BE SAVED");
-		}
-	}
-	
-	public void reload() {
-		try {
-			this.config = YamlConfiguration.loadConfiguration(this.configFile);
-			
-			ConfigSettings.getConfigSettings().setup();
-		}
-		catch (Exception e) {
-			Bukkit.getServer().getConsoleSender().sendMessage(Prefix.ERROR + "ALL CONFIGS COULD NOT BE RELOAD");
 		}
 	}
 }

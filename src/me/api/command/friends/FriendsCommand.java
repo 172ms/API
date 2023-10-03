@@ -40,10 +40,11 @@ public class FriendsCommand extends SexyCommand {
 		switch (string) {
 			case "list": {
 				PlayerAPI playerAPI = PlayerAPI.getPlayerAPI(player);
-				SexyMessage.send(player, "Список друзей §a" + playerAPI.getFriends().size() + " &fиз &a10.");
+				
+				SexyMessage.send(player, "Список друзей &a" + playerAPI.getFriends().size() + " &fиз &a10.");
 				
 				if (playerAPI.getFriends().isEmpty()) {
-					player.sendMessage("§cУ вас нет друзей :(");
+					SexyMessage.send(player, "&cУ Вас нет друзей :(");
 				}
 				else {
 					playerAPI.getFriends().forEach(friends -> {
@@ -51,10 +52,10 @@ public class FriendsCommand extends SexyCommand {
 						PlayerAPI targetAPI = PlayerAPI.getPlayerAPI(target);
 						
 						if (target.isOnline()) {
-							player.sendMessage("§a" + target.getName() + " (онлайн)");
+							SexyMessage.send(player, "&a" + target.getName() + " (онлайн)");
 						}
 						else {
-							player.sendMessage("§c" + target.getName() + " (последний раз был в сети " + targetAPI.getLastJoin() + ")");
+							SexyMessage.send(player, "&c" + target.getName() + " (последний раз был в сети " + targetAPI.getLastJoin() + ")");
 						}
 					});
 				}
@@ -64,7 +65,7 @@ public class FriendsCommand extends SexyCommand {
 		switch (string) {
 			case "add": {
 				if (args.length < 2) {
-					SexyMessage.send(player, "§cИспользуйте правильно команду: /friends add §8[§cИгрок§8]");
+					SexyMessage.send(player, "&cИспользуйте правильно команду: /friends add &8[&cИгрок&8]");
 					return true;
 				}
 				
@@ -105,7 +106,7 @@ public class FriendsCommand extends SexyCommand {
 			}
 			case "remove": {
 				if (args.length < 2) {
-					SexyMessage.send(player, "§cИспользуйте правильно команду: /friends remove §8[§cИгрок§8]");
+					SexyMessage.send(player, "&cИспользуйте правильно команду: /friends remove &8[&cИгрок&8]");
 					return true;
 				}
 				
@@ -128,7 +129,7 @@ public class FriendsCommand extends SexyCommand {
 			}
 			case "accept": {
 				if (args.length < 2) {
-					SexyMessage.send(player, "§cИспользуйте правильно команду: /friends accept §8[§cИгрок§8]");
+					SexyMessage.send(player, "&cИспользуйте правильно команду: /friends accept &8[&cИгрок&8]");
 					return true;
 				}
 				
@@ -160,7 +161,7 @@ public class FriendsCommand extends SexyCommand {
 			}
 			case "cancel": {
 				if (args.length < 2) {
-					SexyMessage.send(player, "§cИспользуйте правильно команду: /friends cancel §8[§cИгрок§8]");
+					SexyMessage.send(player, "&cИспользуйте правильно команду: /friends cancel &8[&cИгрок&8]");
 					return true;
 				}
 				
@@ -223,9 +224,9 @@ public class FriendsCommand extends SexyCommand {
 	private void sendHelper(Player player) {
 		SexyMessage.send(player, "Основные команды:");
 		SexyMessage.send(player, "&a/friends list - &fузнать список друзей.");
-		SexyMessage.send(player, "&a/friends add §8[§cИгрок§8] &a- &fдобавить друга.");
-		SexyMessage.send(player, "&a/friends remove §8[§cИгрок§8] &a- &fудалить друга.");
-		SexyMessage.send(player, "&a/friends accept §8[§cИгрок§8] &a- &fпринять запрос.");
-		SexyMessage.send(player, "&a/friends cancel §8[§cИгрок§8] &a- &fотменить запрос.");
+		SexyMessage.send(player, "&a/friends add &8[&cИгрок&8] &a- &fдобавить друга.");
+		SexyMessage.send(player, "&a/friends remove &8[&cИгрок&8] &a- &fудалить друга.");
+		SexyMessage.send(player, "&a/friends accept &8[&cИгрок&8] &a- &fпринять запрос.");
+		SexyMessage.send(player, "&a/friends cancel &8[&cИгрок&8] &a- &fотменить запрос.");
 	}
 }

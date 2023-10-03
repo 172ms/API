@@ -184,6 +184,7 @@ public class GamemodeCommand extends SexyCommand {
 		if (args.length == 1) {
 			if (sender.hasPermission("fluxmber.gamemode")) {
 				List<String> available = Arrays.asList("0", "1", "2", "3");
+				
 				for (String key : available) {
 					if (key.startsWith(args[0])) {
 						list.add(key);
@@ -191,7 +192,6 @@ public class GamemodeCommand extends SexyCommand {
 				}
 			}
 		}
-		
 		else if (args.length == 2) {
 			if (sender.hasPermission("fluxmber.admin")) {
 				list.addAll(Bukkit.getOnlinePlayers().stream()
