@@ -1,7 +1,9 @@
 package ru.fakeduck_king.messages;
 
+import com.google.common.io.ByteArrayDataOutput;
 import ru.fakeduck_king.utils.player.PlayerSet;
 import org.bukkit.scheduler.BukkitRunnable;
+import com.google.common.io.ByteStreams;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -39,5 +41,15 @@ public class SexyMessage {
 	
 	public static void send(Player player, String message) {
 		player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+	}
+	
+	public static void send(Plugin plugin, Player player, Player target, String message) {
+		ByteArrayDataOutput byteArrayDataOutput = ByteStreams.newDataOutput();
+		
+		byteArrayDataOutput.writeUTF("Message");
+		byteArrayDataOutput.writeUTF(target.getName());
+		byteArrayDataOutput.writeUTF(message);
+		
+		player.sendPluginMessage(plugin, "BungeeCord", byteArrayDataOutput.toByteArray());
 	}
 }

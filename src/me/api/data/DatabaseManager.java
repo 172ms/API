@@ -28,7 +28,9 @@ public class DatabaseManager {
 			Statement statement = this.getConnection().createStatement();
 		)
 		{
-			statement.execute("CREATE TABLE IF NOT EXISTS playerAPI (UUID varchar(100) primary key, RUB int, lastJoin varchar(100), firstJoin varchar(100), messageStaff boolean, messageDonators boolean, friends text)");
+			statement.execute("CREATE TABLE IF NOT EXISTS playerAPI (name varchar(100) primary key, RUB int, lastJoin varchar(100), firstJoin varchar(100), messageStaff boolean, messageDonators boolean, "
+			+ " friends text, "
+			+ "ignoreAll boolean, reply varchar(16), ignoreList text)");
 			Bukkit.getServer().getConsoleSender().sendMessage(Prefix.SUCCESSFULLY + "DATABASE START");
 		}
 		catch (SQLException e) {
@@ -39,7 +41,10 @@ public class DatabaseManager {
 	public void create(PlayerAPI playerAPI) {
 		try
 		(
-			PreparedStatement preparedStatement = this.getConnection().prepareStatement("INSERT INTO playerAPI(UUID, RUB, lastJoin, firstJoin, messageStaff, messageDonators, friends) VALUES (?, ?, ?, ?, ?, ?, ?)");
+			PreparedStatement preparedStatement = this.getConnection().prepareStatement("INSERT INTO playerAPI(name, RUB, lastJoin, firstJoin, messageStaff, messageDonators, "
+			+ " friends, "
+			+ "ignoreAll, reply, ignoreList) "
+			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		)
 		{
 			preparedStatement.setString(1, playerAPI.getName());
@@ -48,7 +53,12 @@ public class DatabaseManager {
 			preparedStatement.setString(4, playerAPI.getFirstJoin());
 			preparedStatement.setBoolean(5, playerAPI.getMessageStaff());
 			preparedStatement.setBoolean(6, playerAPI.getMessageDonators());
+			
 			preparedStatement.setString(7, playerAPI.getFriends().isEmpty() ? null : String.join(",", playerAPI.getFriends()));
+			
+			preparedStatement.setBoolean(8, playerAPI.isIgnoreAll());
+			preparedStatement.setString(9, playerAPI.getReply());
+			preparedStatement.setString(10, playerAPI.getIgnoreList().isEmpty() ? null : String.join(",", playerAPI.getIgnoreList()));
 			
 			preparedStatement.executeUpdate();
 		}
@@ -59,7 +69,7 @@ public class DatabaseManager {
 		PlayerAPI playerAPI = null;
 		try
 		(
-			PreparedStatement preparedStatement = this.getConnection().prepareStatement("SELECT * FROM playerAPI WHERE UUID = ?");
+			PreparedStatement preparedStatement = this.getConnection().prepareStatement("SELECT * FROM playerAPI WHERE name = ?");
 		)
 		{
 			preparedStatement.setString(1, name);
@@ -67,16 +77,23 @@ public class DatabaseManager {
 			
 			if (resultSet.next()) {
 				String resultSetFriends = resultSet.getString("friends");
+				String resultSetIgnoreList = resultSet.getString("ignoreList");
 				List<String> friends = resultSetFriends != null && !resultSetFriends.isEmpty() ? new ArrayList<>(Arrays.asList(resultSetFriends.split(","))) : new ArrayList<>();
+				List<String> ignoreList = resultSetIgnoreList != null && !resultSetIgnoreList.isEmpty() ? new ArrayList<>(Arrays.asList(resultSetIgnoreList.split(","))) : new ArrayList<>();
 				
 				playerAPI = new PlayerAPI(
-					resultSet.getString("UUID"),
+					resultSet.getString("name"),
 					resultSet.getInt("RUB"),
 					resultSet.getString("lastJoin"),
 					resultSet.getString("firstJoin"),
 					resultSet.getBoolean("messageStaff"),
 					resultSet.getBoolean("messageDonators"),
-					friends
+					
+					friends,
+					
+					resultSet.getBoolean("ignoreAll"),
+					resultSet.getString("reply"),
+					ignoreList
 				);
 			}
 		}
@@ -87,7 +104,10 @@ public class DatabaseManager {
 	public void save(PlayerAPI playerAPI) {
 		try
 		(
-			PreparedStatement preparedStatement = this.getConnection().prepareStatement("UPDATE playerAPI SET RUB = ?, lastJoin = ?, firstJoin = ?, messageStaff = ?, messageDonators = ?, friends = ? WHERE UUID = ?")
+			PreparedStatement preparedStatement = this.getConnection().prepareStatement("UPDATE playerAPI SET RUB = ?, lastJoin = ?, firstJoin = ?, messageStaff = ?, messageDonators = ?, "
+			+ "friends = ?, "
+			+ "ignoreAll = ?, reply = ?, ignoreList = ? "
+			+ "WHERE name = ?")
 		)
 		{
 			preparedStatement.setInt(1, playerAPI.getRUB());
@@ -95,9 +115,14 @@ public class DatabaseManager {
 			preparedStatement.setString(3, playerAPI.getFirstJoin());
 			preparedStatement.setBoolean(4, playerAPI.getMessageStaff());
 			preparedStatement.setBoolean(5, playerAPI.getMessageDonators());
+			
 			preparedStatement.setString(6, playerAPI.getFriends().isEmpty() ? null : String.join(",", playerAPI.getFriends()));
 			
-			preparedStatement.setString(7, playerAPI.getName());
+			preparedStatement.setBoolean(7, playerAPI.isIgnoreAll());
+			preparedStatement.setString(8, playerAPI.getReply());
+			preparedStatement.setString(9, playerAPI.getIgnoreList().isEmpty() ? null : String.join(",", playerAPI.getIgnoreList()));
+			
+			preparedStatement.setString(10, playerAPI.getName());
 			preparedStatement.executeUpdate();
 		}
 		catch (SQLException ignore) {}

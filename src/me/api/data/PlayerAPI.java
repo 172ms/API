@@ -8,20 +8,31 @@ import java.util.*;
 public class PlayerAPI {
 	private String name;
 	private int RUB;
+	private int coins;
 	private String lastJoin;
 	private String firstJoin;
 	private boolean messageStaff;
 	private boolean messageDonators;
+	
 	private List<String> friends;
 	
-	public PlayerAPI(String name, int RUB, String lastJoin, String firstJoin, boolean messageStaff, boolean messageDonators, List<String> friends) {
+	private boolean ignoreAll;
+	private String reply;
+	private List<String> ignoreList;
+	
+	public PlayerAPI(String name, int RUB, String lastJoin, String firstJoin, boolean messageStaff, boolean messageDonators, List<String> friends, boolean ignoreAll, String reply, List<String> ignoreList) {
 		this.name = name;
 		this.RUB = RUB;
 		this.lastJoin = lastJoin;
 		this.firstJoin = firstJoin;
 		this.messageStaff = messageStaff;
 		this.messageDonators = messageDonators;
+		
 		this.friends = friends;
+		
+		this.ignoreAll = ignoreAll;
+		this.reply = reply;
+		this.ignoreList = ignoreList;
 	}
 	
 	//getPlayerAPI
@@ -29,7 +40,7 @@ public class PlayerAPI {
 		PlayerAPI playerAPI = DatabaseManager.getDatabaseManager().load(player.getName());
 		
 		if (playerAPI == null) {
-			playerAPI = new PlayerAPI(player.getName(), 0, null, null, false, false, new ArrayList<>());
+			playerAPI = new PlayerAPI(player.getName(), 0, null, null, false, false, new ArrayList<>(), false, null, new ArrayList<>());
 			DatabaseManager.getDatabaseManager().create(playerAPI);
 		}
 		return playerAPI;
@@ -139,5 +150,36 @@ public class PlayerAPI {
 	
 	public void removeFriend(String name) {
 		this.friends.remove(name);
+	}
+	
+	//isIgnoreAll
+	public boolean isIgnoreAll() {
+		return this.ignoreAll;
+	}
+	
+	public void setIgnoreAll(boolean ignoreAll) {
+		this.ignoreAll = ignoreAll;
+	}
+	
+	//getReply
+	public String getReply() {
+		return this.reply;
+	}
+
+	public void setReply(String reply) {
+		this.reply = reply;
+	}
+	
+	//ignoreList
+	public List<String> getIgnoreList() {
+		return this.ignoreList;
+	}
+	
+	public void addIgnorePlayer(String name) {
+		this.ignoreList.add(name);
+	}
+	
+	public void setIgnoreList(List<String> ignoreList) {
+		this.ignoreList = ignoreList;
 	}
 }

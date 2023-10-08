@@ -17,6 +17,7 @@ import me.api.data.*;
 import org.bukkit.*;
 
 public class API extends JavaPlugin {
+	
 	private void registerCommands() {
 		new BroadcastCommand().register();
 		new ClearChatCommand().register();
@@ -54,6 +55,8 @@ public class API extends JavaPlugin {
 			new DonatorsToggleCommand().register();
 		}
 		
+		new MessageCommand().register();
+		
 		new FriendsCommand().register();
 	}
 	
@@ -75,6 +78,9 @@ public class API extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
+		this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+		this.getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", new APIPluginMessageListener());
+		
 		DatabaseManager.getDatabaseManager().setup();
 		
 		ConfigManager.getConfigManager().setup();
