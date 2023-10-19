@@ -30,6 +30,11 @@ public class OpCommand extends SexyCommand {
 						return true;
 					}
 					
+					if (target.isOp()) {
+						SexyMessage.send(sender, "&cИгрок уже оператор!");
+						return true;
+					}
+					
 					target.setOp(true);
 					SexyMessage.send(sender, "&aИгрок " + args[0] + " стал оператором!");
 					return true;
@@ -55,6 +60,11 @@ public class OpCommand extends SexyCommand {
 				
 				if (target == null) {
 					SexyMessage.send(sender, "&cИгрок " + args[0] + " не найден!");
+					return true;
+				}
+				
+				if (target.isOp()) {
+					SexyMessage.send(sender, "&cИгрок уже оператор!");
 					return true;
 				}
 				

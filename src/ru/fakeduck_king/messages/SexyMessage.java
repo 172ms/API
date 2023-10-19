@@ -43,11 +43,11 @@ public class SexyMessage {
 		player.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
 	}
 	
-	public static void send(Plugin plugin, Player player, Player target, String message) {
+	public static void send(Plugin plugin, Player player, String target, String message) {
 		ByteArrayDataOutput byteArrayDataOutput = ByteStreams.newDataOutput();
 		
 		byteArrayDataOutput.writeUTF("Message");
-		byteArrayDataOutput.writeUTF(target.getName());
+		byteArrayDataOutput.writeUTF(target);
 		byteArrayDataOutput.writeUTF(message);
 		
 		player.sendPluginMessage(plugin, "BungeeCord", byteArrayDataOutput.toByteArray());

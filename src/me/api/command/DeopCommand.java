@@ -24,15 +24,15 @@ public class DeopCommand extends SexyCommand {
 		if (!(sender instanceof Player)) {
 			switch (args.length) {
 				case 1: {
-					String string = args[0];
+					String name = args[0];
 					
-					if (!Bukkit.getServer().getOfflinePlayer(string).isOp()) {
+					if (!Bukkit.getServer().getOfflinePlayer(name).isOp()) {
 						SexyMessage.send(sender, "&cИгрок " + args[0] + " не найден!");
 						return true;
 					}
 					
-					Bukkit.getServer().getOfflinePlayer(string).setOp(false);
-					SexyMessage.send(sender, "&cИгрок " + string + " больше не оператор!");
+					Bukkit.getServer().getOfflinePlayer(name).setOp(false);
+					SexyMessage.send(sender, "&cИгрок " + name + " больше не оператор!");
 					return true;
 				}
 				
@@ -52,15 +52,15 @@ public class DeopCommand extends SexyCommand {
 					return true;
 				}
 				
-				String string = args[0];
+				String name = args[0];
 				
-				if (!Bukkit.getServer().getOfflinePlayer(string).isOp()) {
+				if (!Bukkit.getServer().getOfflinePlayer(name).isOp()) {
 					SexyMessage.send(player, "&cИгрок " + args[0] + " не найден!");
 					return true;
 				}
 				
-				Bukkit.getServer().getOfflinePlayer(string).setOp(false);
-				SexyMessage.send(player, "&cИгрок " + string + " больше не оператор!");
+				Bukkit.getServer().getOfflinePlayer(name).setOp(false);
+				SexyMessage.send(player, "&cИгрок " + name + " больше не оператор!");
 				return true;
 			}
 			
@@ -82,8 +82,8 @@ public class DeopCommand extends SexyCommand {
 		
 		if (args.length == 1) {
 			if (sender.hasPermission("*")) {
-				list.addAll(Bukkit.getOnlinePlayers().stream()
-				.map(Player::getName)
+				list.addAll(Bukkit.getOperators().stream()
+				.map(OfflinePlayer::getName)
 				.filter(name -> name.startsWith(args[0]))
 				.collect(Collectors.toList()));
 			}

@@ -121,11 +121,11 @@ public class Handlers extends SexyEvent {
 		if (ConfigSettings.getConfigSettings().isLobby()) {
 			player.getInventory().clear();
 			
-			player.getInventory().setItem(0, CustomItem.create(Material.COMPASS, "&aВыбор сервера"));
+			player.getInventory().setItem(0, CustomItem.create(Material.COMPASS, Prefix.SERVER_SELECTION));
 			
-			player.getInventory().setItem(1, CustomItem.create(Material.CLOCK, "&aСкрыть игроков"));
+			player.getInventory().setItem(1, CustomItem.create(Material.CLOCK, Prefix.HIDE_PLAYER));
 			
-			player.getInventory().setItem(8, CustomItem.create(Material.NETHER_STAR, "&aНастройки"));
+			player.getInventory().setItem(8, CustomItem.create(Material.NETHER_STAR, Prefix.SETTINGS));
 		}
 	}
 	

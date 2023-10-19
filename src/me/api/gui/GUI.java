@@ -14,6 +14,7 @@ public class GUI {
 	//MAIN DONATE
 	public static void openDonate(Player player) {
 		Inventory inventory = Bukkit.createInventory(player, 45, Prefix.DONATE);
+		
 		OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(player.getName());
 		PlayerAPI playerAPI = PlayerAPI.getPlayerAPI(offlinePlayer);
 		
@@ -81,6 +82,7 @@ public class GUI {
 	//CONFIRM DONATE COAL
 	public static void openConfirmDonateCoal(Player player) {
 		Inventory inventory = Bukkit.createInventory(player, 27, Prefix.CONFIRM_DONATE + " " + Prefix.COAL);
+		
 		OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(player.getName());
 		PlayerAPI playerAPI = PlayerAPI.getPlayerAPI(offlinePlayer);
 		
@@ -107,6 +109,7 @@ public class GUI {
 	//CONFIRM DONATE IRON
 	public static void openConfirmDonateIron(Player player) {
 		Inventory inventory = Bukkit.createInventory(player, 27, Prefix.CONFIRM_DONATE + " " + Prefix.IRON);
+		
 		OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(player.getName());
 		PlayerAPI playerAPI = PlayerAPI.getPlayerAPI(offlinePlayer);
 		
@@ -134,6 +137,7 @@ public class GUI {
 	//CONFIRM DONATE GOLD
 	public static void openConfirmDonateGold(Player player) {
 		Inventory inventory = Bukkit.createInventory(player, 27, Prefix.CONFIRM_DONATE + " " + Prefix.GOLD);
+		
 		OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(player.getName());
 		PlayerAPI playerAPI = PlayerAPI.getPlayerAPI(offlinePlayer);
 		
@@ -161,6 +165,7 @@ public class GUI {
 	//CONFIRM DONATE EMERALD
 	public static void openConfirmDonateEmerald(Player player) {
 		Inventory inventory = Bukkit.createInventory(player, 27, Prefix.CONFIRM_DONATE + " " + Prefix.EMERALD);
+		
 		OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(player.getName());
 		PlayerAPI playerAPI = PlayerAPI.getPlayerAPI(offlinePlayer);
 		
@@ -188,6 +193,7 @@ public class GUI {
 	//CONFIRM DONATE DIAMOND
 	public static void openConfirmDonateDiamond(Player player) {
 		Inventory inventory = Bukkit.createInventory(player, 27, Prefix.CONFIRM_DONATE + " " + Prefix.DIAMOND);
+		
 		OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(player.getName());
 		PlayerAPI playerAPI = PlayerAPI.getPlayerAPI(offlinePlayer);
 		
@@ -215,6 +221,7 @@ public class GUI {
 	//CONFIRM DONATE FLUX
 	public static void openConfirmDonateFlux(Player player) {
 		Inventory inventory = Bukkit.createInventory(player, 27, Prefix.CONFIRM_DONATE + " " + Prefix.FLUX);
+		
 		OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(player.getName());
 		PlayerAPI playerAPI = PlayerAPI.getPlayerAPI(offlinePlayer);
 		
@@ -249,7 +256,7 @@ public class GUI {
 		
 		inventory.setItem(10, CustomItem.create(Material.IRON_SHOVEL, "&aSPLEEF"));
 		
-		inventory.setItem(13, CustomItem.create(Material.IRON_PICKAXE, "&aPRISON NORMAL"));
+		inventory.setItem(13, CustomItem.create(Material.IRON_BARS, "&aPRISON NORMAL"));
 		
 		inventory.setItem(36, CustomItem.create(Material.PAPER, "&cВернуться назад"));
 		
@@ -268,7 +275,7 @@ public class GUI {
 
 		inventory.setItem(10, CustomItem.create(Material.IRON_SHOVEL, "&aSPLEEF"));
 		
-		inventory.setItem(13, CustomItem.create(Material.IRON_PICKAXE, "&aPRISON NORMAL"));
+		inventory.setItem(13, CustomItem.create(Material.IRON_BARS, "&aPRISON NORMAL"));
 		
 		inventory.setItem(36, CustomItem.create(Material.PAPER, "&cВернуться назад"));
 		
@@ -287,7 +294,7 @@ public class GUI {
 		
 		inventory.setItem(10, CustomItem.create(Material.IRON_SHOVEL, "&aSPLEEF"));
 		
-		inventory.setItem(13, CustomItem.create(Material.IRON_PICKAXE, "&aPRISON NORMAL"));
+		inventory.setItem(13, CustomItem.create(Material.IRON_BARS, "&aPRISON NORMAL"));
 		
 		inventory.setItem(36, CustomItem.create(Material.PAPER, "&cВернуться назад"));
 		
@@ -306,7 +313,7 @@ public class GUI {
 		
 		inventory.setItem(10, CustomItem.create(Material.IRON_SHOVEL, "&aSPLEEF"));
 		
-		inventory.setItem(13, CustomItem.create(Material.IRON_PICKAXE, "&aPRISON NORMAL"));
+		inventory.setItem(13, CustomItem.create(Material.IRON_BARS, "&aPRISON NORMAL"));
 		
 		inventory.setItem(36, CustomItem.create(Material.PAPER, "&cВернуться назад"));
 		
@@ -325,7 +332,7 @@ public class GUI {
 		
 		inventory.setItem(10, CustomItem.create(Material.IRON_SHOVEL, "&aSPLEEF"));
 		
-		inventory.setItem(13, CustomItem.create(Material.IRON_PICKAXE, "&aPRISON NORMAL"));
+		inventory.setItem(13, CustomItem.create(Material.IRON_BARS, "&aPRISON NORMAL"));
 		
 		inventory.setItem(36, CustomItem.create(Material.PAPER, "&cВернуться назад"));
 		
@@ -344,11 +351,34 @@ public class GUI {
 		
 		inventory.setItem(10, CustomItem.create(Material.IRON_SHOVEL, "&aSPLEEF"));
 		
-		inventory.setItem(13, CustomItem.create(Material.IRON_PICKAXE, "&aPRISON NORMAL"));
+		inventory.setItem(13, CustomItem.create(Material.IRON_BARS, "&aPRISON NORMAL"));
 		
 		inventory.setItem(36, CustomItem.create(Material.PAPER, "&cВернуться назад"));
 		
 		inventory.setItem(44, CustomItem.create(Material.PAPER, "&cВернуться назад"));
+		
+		player.openInventory(inventory);
+	}
+	
+	//SERVERS
+	public static void openServerSelection(Player player) {
+		Inventory inventory = Bukkit.createInventory(player, 54, Prefix.SELECT_MINI_GAMES);
+		
+		for (int i = 0; i < inventory.getSize(); ++i) {
+			inventory.setItem(i, CustomItem.create(Material.BLACK_STAINED_GLASS_PANE, " "));
+		}
+		
+		inventory.setItem(10, CustomItem.create(Material.IRON_SHOVEL, "&aSPLEEF"));
+		
+		inventory.setItem(12, CustomItem.create(Material.TNT, "&aTNT RUN"));
+		
+		inventory.setItem(14, CustomItem.create(Material.ENCHANTED_GOLDEN_APPLE, "&aЧЕЛЕНДЖИ"));
+		
+		inventory.setItem(16, CustomItem.create(Material.IRON_BARS, "&aPRISON NORMAL"));
+		
+		inventory.setItem(45, CustomItem.create(Material.BARRIER, "&cЗакрыть"));
+		
+		inventory.setItem(53, CustomItem.create(Material.BARRIER, "&cЗакрыть"));
 		
 		player.openInventory(inventory);
 	}

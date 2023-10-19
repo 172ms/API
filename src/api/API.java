@@ -9,6 +9,7 @@ import org.bukkit.plugin.java.*;
 import me.api.configuration.*;
 import org.bukkit.attribute.*;
 import me.api.command.chat.*;
+import me.api.gui.listener.*;
 import me.api.listener.*;
 import me.api.runnable.*;
 import me.api.command.*;
@@ -36,6 +37,7 @@ public class API extends JavaPlugin {
 		new HatCommand().register();
 		new HealCommand().register();
 		new HelpCommand().register();
+		new HubCommand().register();
 		new KillCommand().register();
 		new OnlineCommand().register();
 		new OpCommand().register();
@@ -63,6 +65,8 @@ public class API extends JavaPlugin {
 	private void registerListeners() {
 		new DonateListener(API.getInstance());
 		
+		new PlayerInteractListener(API.getInstance());
+		
 		new Cancelled(API.getInstance());
 		new Handlers(API.getInstance());
 		
@@ -79,7 +83,6 @@ public class API extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
-		this.getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", new APIPluginMessageListener());
 		
 		DatabaseManager.getDatabaseManager().setup();
 		

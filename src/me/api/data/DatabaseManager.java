@@ -29,7 +29,7 @@ public class DatabaseManager {
 		)
 		{
 			statement.execute("CREATE TABLE IF NOT EXISTS playerAPI (name varchar(100) primary key, RUB int, lastJoin varchar(100), firstJoin varchar(100), messageStaff boolean, messageDonators boolean, "
-			+ " friends text, "
+			+ "friends text, "
 			+ "ignoreAll boolean, reply varchar(16), ignoreList text)");
 			Bukkit.getServer().getConsoleSender().sendMessage(Prefix.SUCCESSFULLY + "DATABASE START");
 		}
@@ -42,7 +42,7 @@ public class DatabaseManager {
 		try
 		(
 			PreparedStatement preparedStatement = this.getConnection().prepareStatement("INSERT INTO playerAPI(name, RUB, lastJoin, firstJoin, messageStaff, messageDonators, "
-			+ " friends, "
+			+ "friends, "
 			+ "ignoreAll, reply, ignoreList) "
 			+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		)

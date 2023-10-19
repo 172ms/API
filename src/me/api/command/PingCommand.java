@@ -6,6 +6,11 @@ import ru.fakeduck_king.utils.*;
 import org.bukkit.command.*;
 import org.bukkit.entity.*;
 
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
+
+import api.API;
+
 public class PingCommand extends SexyCommand {
 	
 	public PingCommand() {
@@ -23,6 +28,12 @@ public class PingCommand extends SexyCommand {
 		}
 		
 		Player player = (Player)sender;
+		
+        ByteArrayDataOutput byteArrayDataOutput = ByteStreams.newDataOutput();
+        byteArrayDataOutput.writeUTF("Connect");
+        byteArrayDataOutput.writeUTF("prison");
+        
+        player.sendPluginMessage(API.getInstance(), "BungeeCord", byteArrayDataOutput.toByteArray());
 		
 		if (SexyPing.get(player) > 99) {
 			SexyMessage.send(player, "Ваш пинг: &c" + SexyPing.get(player) + "ms.");

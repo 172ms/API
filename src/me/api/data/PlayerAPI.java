@@ -9,6 +9,7 @@ public class PlayerAPI {
 	private String name;
 	private int RUB;
 	private int coins;
+	
 	private String lastJoin;
 	private String firstJoin;
 	private boolean messageStaff;

@@ -34,4 +34,10 @@ public class Prefix {
 	public static final String SELECT_MINI_GAMES_DIAMOND = "§8● Выбор мини-игры " + Prefix.DIAMOND;
 	public static final String SELECT_MINI_GAMES_FLUX = "§8● Выбор мини-игры " + Prefix.FLUX;
 	public static final String CONFIRM_DONATE = "§8● Подтверждение";
+	
+	//SERVERS
+	public static final String SELECT_MINI_GAMES = "§8● Выбор мини-игр";
+	public static final String SERVER_SELECTION = "§aВыбор сервера";
+	public static final String HIDE_PLAYER = "§aСкрыть игроков";
+	public static final String SETTINGS = "§aНастройки";
 }
