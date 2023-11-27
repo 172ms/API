@@ -12,6 +12,7 @@ public class PlayerAPI {
 	
 	private String lastJoin;
 	private String firstJoin;
+	private boolean online;
 	private boolean messageStaff;
 	private boolean messageDonators;
 	

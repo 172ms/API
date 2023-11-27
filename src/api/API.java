@@ -3,9 +3,9 @@ package api;
 import me.api.configuration.settings.*;
 import ru.fakeduck_king.utils.player.*;
 import me.api.command.listener.*;
-import me.api.command.friends.*;
 import me.api.listener.oldpvp.*;
 import org.bukkit.plugin.java.*;
+import me.api.command.friend.*;
 import me.api.configuration.*;
 import org.bukkit.attribute.*;
 import me.api.command.chat.*;
@@ -59,7 +59,7 @@ public class API extends JavaPlugin {
 		
 		new MessageCommand().register();
 		
-		new FriendsCommand().register();
+		new FriendCommand().register();
 	}
 	
 	private void registerListeners() {

@@ -1,4 +1,4 @@
-package me.api.command.friends;
+package me.api.command.friend;
 
 import ru.fakeduck_king.register.commands.*;
 import com.google.common.collect.*;
@@ -11,10 +11,10 @@ import org.bukkit.*;
 import java.util.*;
 
 @SuppressWarnings("deprecation")
-public class FriendsCommand extends SexyCommand {
+public class FriendCommand extends SexyCommand {
 	
-	public FriendsCommand() {
-		super("friends",
+	public FriendCommand() {
+		super("friend",
 		"",
 		"",
 		Prefix.ERROR_PERMISSIONS,
@@ -65,7 +65,7 @@ public class FriendsCommand extends SexyCommand {
 		switch (string) {
 			case "add": {
 				if (args.length < 2) {
-					SexyMessage.send(player, "&cИспользуйте правильно команду: /friends add &8[&cИгрок&8]");
+					SexyMessage.send(player, "&cИспользуйте правильно команду: /friend add &8[&cИгрок&8]");
 					return true;
 				}
 				
@@ -97,7 +97,7 @@ public class FriendsCommand extends SexyCommand {
 				}
 				
 				if (targetAPIFriendsList.size() >= 10) {
-					SexyMessage.send(player, "&c" + target.getName() + " достиг максимального лимита друзей (10)!");
+					SexyMessage.send(player, "&cИгрок 	" + target.getName() + " достиг максимального лимита друзей (10)!");
 					return true;
 				}
 				
@@ -106,7 +106,7 @@ public class FriendsCommand extends SexyCommand {
 			}
 			case "remove": {
 				if (args.length < 2) {
-					SexyMessage.send(player, "&cИспользуйте правильно команду: /friends remove &8[&cИгрок&8]");
+					SexyMessage.send(player, "&cИспользуйте правильно команду: /friend remove &8[&cИгрок&8]");
 					return true;
 				}
 				
@@ -129,7 +129,7 @@ public class FriendsCommand extends SexyCommand {
 			}
 			case "accept": {
 				if (args.length < 2) {
-					SexyMessage.send(player, "&cИспользуйте правильно команду: /friends accept &8[&cИгрок&8]");
+					SexyMessage.send(player, "&cИспользуйте правильно команду: /friend accept &8[&cИгрок&8]");
 					return true;
 				}
 				
@@ -153,7 +153,7 @@ public class FriendsCommand extends SexyCommand {
 				DatabaseManager.getDatabaseManager().save(targetAPI);
 				
 				if (target.isOnline()) {
-					SexyMessage.send((Player)target, player.getName() + " принял ваш запрос на добавление в друзья.");
+					SexyMessage.send((Player)target, "Игрок " + player.getName() + " принял ваш запрос на добавление в друзья.");
 				}
 				
 				SexyMessage.send(player, "Вы приняли запрос на добавление в друзья от &a" + args[1] + ".");
@@ -161,7 +161,7 @@ public class FriendsCommand extends SexyCommand {
 			}
 			case "cancel": {
 				if (args.length < 2) {
-					SexyMessage.send(player, "&cИспользуйте правильно команду: /friends cancel &8[&cИгрок&8]");
+					SexyMessage.send(player, "&cИспользуйте правильно команду: /friend cancel &8[&cИгрок&8]");
 					return true;
 				}
 				
@@ -177,6 +177,11 @@ public class FriendsCommand extends SexyCommand {
 				}
 				
 				FriendRequest.cancelFriendRequest(player, target.getPlayer());
+				
+				if (target.isOnline()) {
+					SexyMessage.send((Player)target, "&c" + player.getName() + " отменил ваш запрос на добавление в друзья.");
+				}
+				
 				SexyMessage.send(player, "&cВы отменили запрос на добавление в друзья от игрока " + args[1] + ".");
 				return true;
 			}
@@ -223,10 +228,10 @@ public class FriendsCommand extends SexyCommand {
 	
 	private void sendHelper(Player player) {
 		SexyMessage.send(player, "Основные команды:");
-		SexyMessage.send(player, "&a/friends list - &fузнать список друзей.");
-		SexyMessage.send(player, "&a/friends add &8[&cИгрок&8] &a- &fдобавить друга.");
-		SexyMessage.send(player, "&a/friends remove &8[&cИгрок&8] &a- &fудалить друга.");
-		SexyMessage.send(player, "&a/friends accept &8[&cИгрок&8] &a- &fпринять запрос.");
-		SexyMessage.send(player, "&a/friends cancel &8[&cИгрок&8] &a- &fотменить запрос.");
+		SexyMessage.send(player, "&a/friend list - &fузнать список друзей.");
+		SexyMessage.send(player, "&a/friend add &8[&cИгрок&8] &a- &fдобавить друга.");
+		SexyMessage.send(player, "&a/friend remove &8[&cИгрок&8] &a- &fудалить друга.");
+		SexyMessage.send(player, "&a/friend accept &8[&cИгрок&8] &a- &fпринять запрос.");
+		SexyMessage.send(player, "&a/friend cancel &8[&cИгрок&8] &a- &fотменить запрос.");
 	}
 }

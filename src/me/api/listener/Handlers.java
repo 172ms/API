@@ -96,7 +96,7 @@ public class Handlers extends SexyEvent {
 		
 		if (ConfigSettings.getConfigSettings().isKeepInventory()) {
 			event.setKeepInventory(true);
-            event.getDrops().clear();
+			event.getDrops().clear();
 		}
 	}
 	

@@ -60,8 +60,8 @@ public class FriendRequest {
 	
 	public static void cancelFriendRequest(Player player, Player receiver) {
 		FriendRequest.friendRequests.removeIf(friendRequest ->
-			(friendRequest.getPlayer().equals(player.getName()) && friendRequest.getReceiver().equals(receiver.getName())) ||
-			(friendRequest.getPlayer().equals(receiver.getName()) && friendRequest.getReceiver().equals(player.getName()))
+			(friendRequest.getPlayer().equals(player.getName()) && friendRequest.getReceiver().equals(receiver.getName())) 
+			|| (friendRequest.getPlayer().equals(receiver.getName()) && friendRequest.getReceiver().equals(player.getName()))
 		);
 	}
 }
